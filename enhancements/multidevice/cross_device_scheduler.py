@@ -38,7 +38,10 @@ from abc import ABC, abstractmethod
 import random
 import statistics
 
-from device_protocol import TaskInfo, TaskPriority, TaskState, DeviceInfo, DeviceStatus
+try:
+    from .device_protocol import TaskInfo, TaskPriority, TaskState, DeviceInfo, DeviceStatus
+except ImportError:
+    from enhancements.multidevice.device_protocol import TaskInfo, TaskPriority, TaskState, DeviceInfo, DeviceStatus
 
 # Configure logging
 logging.basicConfig(
