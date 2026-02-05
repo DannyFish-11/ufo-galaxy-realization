@@ -465,8 +465,12 @@ class SmartHomeNode:
             "get_stats": lambda: {"success": True, "stats": self.controller.get_stats()},
             
             # Discovery
-            "discover": lambda: {"success": True, "devices": [d.to_dict() for d in (await self.controller.discover_all())]},
+            # Discovery handled separately due to async
         }
+        
+        if action == "discover":
+            devices = await self.controller.discover_all()
+            return {"success": True, "devices": [d.to_dict() for d in devices]}
         
         handler = actions.get(action)
         if handler:

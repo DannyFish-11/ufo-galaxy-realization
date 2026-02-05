@@ -196,8 +196,7 @@ class GPT4CodeModel(BaseCodeModel):
 
             messages = [
                 {"role": "system", "content": system_prompt},
-                {"role": "user", "content": f"Complete this code:
-\`\`\`{context.language}\n{partial_code}\n\`\`\`"}
+                {"role": "user", "content": f"Complete this code:\n```{context.language}\n{partial_code}\n```"}
             ]
 
             response = await client.chat.completions.create(
@@ -263,8 +262,7 @@ class ClaudeCodeModel(BaseCodeModel):
                 system=system_prompt,
                 messages=[{
                     "role": "user",
-                    "content": f"Complete this code:
-\`\`\`{context.language}\n{partial_code}\n\`\`\`"
+                    "content": f"Complete this code:\n```{context.language}\n{partial_code}\n```"
                 }]
             )
 
@@ -318,8 +316,7 @@ class GeminiCodeModel(BaseCodeModel):
             model = genai.GenerativeModel(self.model_name)
 
             system_prompt = self._build_system_prompt(CodeTaskType.COMPLETE, context)
-            full_prompt = f"{system_prompt}\n\nComplete this code:
-\`\`\`{context.language}\n{partial_code}\n\`\`\`"
+            full_prompt = f"{system_prompt}\n\nComplete this code:\n```{context.language}\n{partial_code}\n```"
 
             response = await model.generate_content_async(
                 full_prompt,
