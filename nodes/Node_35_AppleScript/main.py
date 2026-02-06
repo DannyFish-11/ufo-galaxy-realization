@@ -1,101 +1,243 @@
-"""
-Node 35: AppleScript - macOS 自动化
-"""
-import os, subprocess, platform
-from datetime import datetime
-from typing import Optional
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+import asyncio
+import logging
+import subprocess
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import Optional, Tuple
 
-app = FastAPI(title="Node 35 - AppleScript", version="2.0.0")
-app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
+# 配置日志记录器
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler("node_35_applescript.log")
+    ]
+)
 
-IS_MACOS = platform.system() == "Darwin"
+logger = logging.getLogger(__name__)
 
-def run_osascript(script: str, timeout: int = 30):
-    if not IS_MACOS:
-        return {"success": False, "error": "AppleScript only works on macOS"}
+class NodeStatus(Enum):
+    """定义节点运行状态的枚举"""
+    INITIALIZING = "INITIALIZING"  # 正在初始化
+    RUNNING = "RUNNING"          # 正在运行
+    STOPPED = "STOPPED"          # 已停止
+    ERROR = "ERROR"              # 出现错误
+    DEGRADED = "DEGRADED"        # 降级运行
+
+class ScriptExecutionStatus(Enum):
+    """定义 AppleScript 脚本执行状态的枚举"""
+    PENDING = "PENDING"          # 等待执行
+    SUCCESS = "SUCCESS"          # 执行成功
+    FAILED = "FAILED"            # 执行失败
+    TIMEOUT = "TIMEOUT"          # 执行超时
+
+@dataclass
+class AppleScriptConfig:
+    """存储 AppleScript 节点的配置信息"""
+    node_name: str = "Node_35_AppleScript" # 节点名称
+    default_timeout: int = 30  # 默认脚本执行超时时间（秒）
+    log_file: str = "node_35_applescript.log" # 日志文件路径
+
+@dataclass
+class ExecutionResult:
+    """存储单次脚本执行的结果"""
+    status: ScriptExecutionStatus = ScriptExecutionStatus.PENDING
+    output: Optional[str] = None
+    error: Optional[str] = None
+    execution_time: float = 0.0
+
+class Node35AppleScriptService:
+    """主服务类，负责处理 AppleScript 的执行和节点管理"""
+
+    def __init__(self, config: Optional[AppleScriptConfig] = None):
+        """初始化服务"""
+        self.config = config if config else self.load_config()
+        self.status = NodeStatus.INITIALIZING
+        self.last_execution_result: Optional[ExecutionResult] = None
+        logger.info(f"节点 {self.config.node_name} 正在初始化...")
+        self._verify_environment()
+        self.status = NodeStatus.RUNNING
+        logger.info(f"节点 {self.config.node_name} 初始化完成，当前状态: {self.status.value}")
+
+    def load_config(self) -> AppleScriptConfig:
+        """加载配置。在此示例中，我们使用默认配置。"""
+        logger.info("加载默认配置...")
+        return AppleScriptConfig()
+
+    def _verify_environment(self):
+        """验证运行环境，主要是检查 `osascript` 命令是否存在"""
+        logger.info("正在验证运行环境...")
+        try:
+            # 使用 subprocess.run 检查命令是否存在且可执行
+            result = subprocess.run(["which", "osascript"], capture_output=True, text=True, check=True)
+            if result.stdout:
+                logger.info(f"`osascript` 命令已找到: {result.stdout.strip()}")
+            else:
+                logger.error("`osascript` 命令未找到，此节点无法在非 macOS 环境下运行。")
+                self.status = NodeStatus.ERROR
+                raise EnvironmentError("`osascript` command not found. This node can only run on macOS.")
+        except (subprocess.CalledProcessError, FileNotFoundError) as e:
+            logger.error(f"环境验证失败: {e}")
+            self.status = NodeStatus.ERROR
+            raise EnvironmentError("Failed to verify `osascript` command.") from e
+
+    async def execute_script(self, script: str, timeout: Optional[int] = None) -> ExecutionResult:
+        """异步执行 AppleScript 脚本"""
+        if self.status != NodeStatus.RUNNING:
+            logger.warning(f"节点状态为 {self.status.value}，无法执行脚本。")
+            return ExecutionResult(status=ScriptExecutionStatus.FAILED, error="Node is not in RUNNING state.")
+
+        execution_timeout = timeout if timeout is not None else self.config.default_timeout
+        logger.info(f"准备执行 AppleScript，超时设置为 {execution_timeout} 秒。")
+        logger.debug(f"待执行脚本:\n---\n{script}\n---")
+
+        start_time = asyncio.get_event_loop().time()
+
+        try:
+            # 创建子进程来执行 osascript 命令
+            process = await asyncio.create_subprocess_exec(
+                "osascript", "-e", script,
+                stdout=asyncio.subprocess.PIPE,
+                stderr=asyncio.subprocess.PIPE
+            )
+
+            # 等待脚本执行完成或超时
+            stdout, stderr = await asyncio.wait_for(process.communicate(), timeout=execution_timeout)
+
+            end_time = asyncio.get_event_loop().time()
+            execution_time = end_time - start_time
+
+            output_str = stdout.decode().strip()
+            error_str = stderr.decode().strip()
+
+            if process.returncode == 0:
+                logger.info(f"脚本执行成功，耗时 {execution_time:.2f} 秒。")
+                result = ExecutionResult(
+                    status=ScriptExecutionStatus.SUCCESS,
+                    output=output_str,
+                    execution_time=execution_time
+                )
+            else:
+                logger.error(f"脚本执行失败，返回码: {process.returncode}")
+                logger.error(f"错误信息: {error_str}")
+                result = ExecutionResult(
+                    status=ScriptExecutionStatus.FAILED,
+                    output=output_str, # 有时错误信息也会输出到 stdout
+                    error=error_str,
+                    execution_time=execution_time
+                )
+
+        except asyncio.TimeoutError:
+            logger.error(f"脚本执行超时（超过 {execution_timeout} 秒）。")
+            end_time = asyncio.get_event_loop().time()
+            result = ExecutionResult(
+                status=ScriptExecutionStatus.TIMEOUT,
+                error=f"Script execution timed out after {execution_timeout} seconds.",
+                execution_time=end_time - start_time
+            )
+            # 超时后尝试终止进程
+            if "process" in locals() and process.returncode is None:
+                process.terminate()
+                await process.wait()
+                logger.warning("已终止超时的脚本进程。")
+        except Exception as e:
+            logger.critical(f"执行脚本时发生意外错误: {e}", exc_info=True)
+            end_time = asyncio.get_event_loop().time()
+            result = ExecutionResult(
+                status=ScriptExecutionStatus.FAILED,
+                error=str(e),
+                execution_time=end_time - start_time
+            )
+
+        self.last_execution_result = result
+        return result
+
+    async def health_check(self) -> dict:
+        """提供节点的健康检查接口"""
+        logger.info("执行健康检查...")
+        # 简单的健康检查逻辑：如果节点状态是 RUNNING，则健康
+        is_healthy = self.status == NodeStatus.RUNNING
+        return {
+            "node_name": self.config.node_name,
+            "status": self.status.value,
+            "is_healthy": is_healthy,
+            "timestamp": asyncio.get_event_loop().time()
+        }
+
+    async def get_status(self) -> dict:
+        """提供节点详细状态的查询接口"""
+        logger.info("查询节点状态...")
+        return {
+            "node_name": self.config.node_name,
+            "status": self.status.value,
+            "config": self.config.__dict__,
+            "last_execution": self.last_execution_result.__dict__ if self.last_execution_result else None
+        }
+
+    async def stop(self):
+        """停止节点服务"""
+        self.status = NodeStatus.STOPPED
+        logger.info(f"节点 {self.config.node_name} 已停止。")
+
+async def main():
+    """主函数，用于演示和测试节点功能"""
+    logger.info("--- 启动 Node_35_AppleScript 服务演示 ---")
+    
+    service = None
     try:
-        result = subprocess.run(["/usr/bin/osascript", "-e", script], capture_output=True, text=True, timeout=timeout)
-        return {"success": result.returncode == 0, "output": result.stdout.strip(), "error": result.stderr.strip() if result.returncode != 0 else None}
+        # 1. 初始化服务
+        service = Node35AppleScriptService()
+        initial_status = await service.get_status()
+        logger.info(f"服务初始化状态: {initial_status}")
+
+        # 2. 执行健康检查
+        health = await service.health_check()
+        logger.info(f"健康检查结果: {health}")
+
+        # 3. 定义一个简单的 AppleScript 脚本
+        simple_script = '''display dialog "Hello from UFO Galaxy!" buttons {"OK"} default button "OK" with icon note'''
+        logger.info("\n--- 准备执行一个简单的 AppleScript ---")
+        result = await service.execute_script(simple_script, timeout=10)
+        logger.info(f"简单脚本执行结果: {result.status.value}")
+        if result.output:
+            logger.info(f"输出: {result.output}")
+        if result.error:
+            logger.error(f"错误: {result.error}")
+
+        # 4. 查询执行后的状态
+        status_after_exec = await service.get_status()
+        logger.info(f"执行后状态: {status_after_exec}")
+
+        # 5. 定义一个会失败的 AppleScript 脚本（语法错误）
+        failing_script = '''display dialog "This will fail''' # 缺少闭合引号
+        logger.info("\n--- 准备执行一个会失败的 AppleScript ---")
+        result_fail = await service.execute_script(failing_script)
+        logger.info(f"失败脚本执行结果: {result_fail.status.value}")
+        if result_fail.error:
+            logger.error(f"捕获到的错误: {result_fail.error}")
+
+        # 6. 定义一个可能超时的脚本
+        timeout_script = 'delay 10' # 延迟10秒
+        logger.info("\n--- 准备执行一个会超时的 AppleScript (超时设置为3秒) ---")
+        result_timeout = await service.execute_script(timeout_script, timeout=3)
+        logger.info(f"超时脚本执行结果: {result_timeout.status.value}")
+        if result_timeout.error:
+            logger.error(f"捕获到的错误: {result_timeout.error}")
+
+    except EnvironmentError as e:
+        logger.critical(f"无法启动服务，环境不满足要求: {e}")
     except Exception as e:
-        return {"success": False, "error": str(e)}
-
-class ScriptRequest(BaseModel):
-    script: str
-    timeout: int = 30
-
-class NotificationRequest(BaseModel):
-    title: str
-    message: str
-
-class AppRequest(BaseModel):
-    app_name: str
-
-@app.get("/health")
-async def health():
-    return {"status": "healthy" if IS_MACOS else "unavailable", "node_id": "35", "name": "AppleScript", "is_macos": IS_MACOS, "timestamp": datetime.now().isoformat()}
-
-@app.post("/execute")
-async def execute_script(request: ScriptRequest):
-    result = run_osascript(request.script, request.timeout)
-    if not result["success"]:
-        raise HTTPException(status_code=500, detail=result.get("error"))
-    return result
-
-@app.post("/notification")
-async def show_notification(request: NotificationRequest):
-    script = f'display notification "{request.message}" with title "{request.title}"'
-    return run_osascript(script)
-
-@app.post("/open_app")
-async def open_app(request: AppRequest):
-    script = f'tell application "{request.app_name}" to activate'
-    return run_osascript(script)
-
-@app.post("/quit_app")
-async def quit_app(request: AppRequest):
-    script = f'tell application "{request.app_name}" to quit'
-    return run_osascript(script)
-
-@app.get("/running_apps")
-async def get_running_apps():
-    script = 'tell application "System Events" to get name of every process whose background only is false'
-    result = run_osascript(script)
-    if result["success"]:
-        apps = result["output"].split(", ") if result["output"] else []
-        return {"success": True, "apps": apps}
-    return result
-
-@app.post("/say")
-async def say_text(text: str, voice: Optional[str] = None):
-    script = f'say "{text}"'
-    if voice:
-        script += f' using "{voice}"'
-    return run_osascript(script, timeout=60)
-
-@app.get("/clipboard")
-async def get_clipboard():
-    return run_osascript("the clipboard")
-
-@app.post("/clipboard")
-async def set_clipboard(content: str):
-    return run_osascript(f'set the clipboard to "{content}"')
-
-@app.post("/mcp/call")
-async def mcp_call(request: dict):
-    tool = request.get("tool", "")
-    params = request.get("params", {})
-    if tool == "execute": return await execute_script(ScriptRequest(**params))
-    elif tool == "notification": return await show_notification(NotificationRequest(**params))
-    elif tool == "open_app": return await open_app(AppRequest(**params))
-    elif tool == "quit_app": return await quit_app(AppRequest(**params))
-    elif tool == "running_apps": return await get_running_apps()
-    elif tool == "say": return await say_text(params.get("text", ""), params.get("voice"))
-    elif tool == "clipboard": return await get_clipboard() if not params.get("content") else await set_clipboard(params["content"])
-    raise HTTPException(status_code=400, detail=f"Unknown tool: {tool}")
+        logger.critical(f"在主函数中发生未捕获的异常: {e}", exc_info=True)
+    finally:
+        if service:
+            await service.stop()
+        logger.info("--- Node_35_AppleScript 服务演示结束 ---")
 
 if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8035)
+    # 注意：此脚本需要在 macOS 环境下运行才能成功执行 AppleScript
+    # 在非 macOS 环境下，初始化会失败并打印错误信息
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        logger.info("程序被用户中断。")
