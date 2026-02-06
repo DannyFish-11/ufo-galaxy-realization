@@ -15,9 +15,9 @@ except ImportError:
 logger = logging.getLogger("llm_manager")
 
 class ModelConfig(BaseModel):
-    provider: str  # openai, deepseek, anthropic, google, etc.
+    provider: str = "oneapi" # 默认为 oneapi
     model_name: str
-    api_key: str
+    api_key: Optional[str] = None # 如果使用 OneAPI，通常统一配置
     base_url: Optional[str] = None
     cost_per_1k_input: float = 0.0
     cost_per_1k_output: float = 0.0
@@ -34,81 +34,82 @@ class TokenUsage(BaseModel):
 class LLMManager:
     def __init__(self, config_path: str = "config.json"):
         self.config_path = config_path
-        self.models: Dict[str, ModelConfig] = {}
-        self.clients: Dict[str, Any] = {}
+        self.oneapi_client = None
+        self.oneapi_config = None
         self.usage_log: List[TokenUsage] = []
         self.default_model = "gpt-4o"
         self._load_config()
 
     def _load_config(self):
-        """加载多模型配置"""
+        """加载配置，优先支持 OneAPI"""
         if os.path.exists(self.config_path):
             try:
                 with open(self.config_path, 'r') as f:
                     config = json.load(f)
-                    llm_configs = config.get("llm_models", {})
                     
-                    for name, cfg in llm_configs.items():
-                        self.models[name] = ModelConfig(**cfg)
-                        
-                        # 初始化客户端 (目前仅支持 OpenAI 兼容接口)
-                        if AsyncOpenAI:
-                            self.clients[name] = AsyncOpenAI(
-                                api_key=cfg["api_key"],
-                                base_url=cfg.get("base_url")
-                            )
+                    # OneAPI 配置
+                    oneapi_base = config.get("oneapi_base_url")
+                    oneapi_key = config.get("oneapi_key")
+                    
+                    if oneapi_base and oneapi_key and AsyncOpenAI:
+                        self.oneapi_client = AsyncOpenAI(
+                            api_key=oneapi_key,
+                            base_url=oneapi_base
+                        )
+                        self.oneapi_config = {
+                            "base_url": oneapi_base,
+                            "api_key": oneapi_key
+                        }
+                        logger.info(f"OneAPI 聚合层已激活: {oneapi_base}")
                     
                     self.default_model = config.get("default_llm_model", "gpt-4o")
-                    logger.info(f"已加载 {len(self.models)} 个 LLM 模型配置")
+                    
             except Exception as e:
                 logger.error(f"加载 LLM 配置失败: {e}")
 
-    def get_client(self, model_alias: str = None) -> Any:
-        """获取指定模型的客户端"""
-        model_alias = model_alias or self.default_model
-        if model_alias not in self.clients:
-            # Fallback to default if alias not found
-            if self.default_model in self.clients:
-                logger.warning(f"模型 {model_alias} 未配置，回退到 {self.default_model}")
-                return self.clients[self.default_model], self.models[self.default_model]
-            else:
-                raise ValueError(f"模型 {model_alias} 未配置且无默认模型可用")
-        return self.clients[model_alias], self.models[model_alias]
+    def get_client(self) -> Any:
+        """获取 OneAPI 客户端"""
+        if self.oneapi_client:
+            return self.oneapi_client
+        else:
+            raise ValueError("OneAPI 未配置，请在 config.json 中设置 oneapi_base_url 和 oneapi_key")
 
     async def chat_completion(self, messages: List[Dict], tools: List[Dict] = None, model_alias: str = None, **kwargs) -> Any:
-        """统一的 Chat Completion 接口，包含 Token 审计"""
-        client, model_config = self.get_client(model_alias)
+        """统一的 Chat Completion 接口，通过 OneAPI 路由"""
+        client = self.get_client()
+        target_model = model_alias or self.default_model
         
         try:
             start_time = datetime.now()
+            # 直接透传 model_alias 给 OneAPI，由 OneAPI 负责路由
             response = await client.chat.completions.create(
-                model=model_config.model_name,
+                model=target_model,
                 messages=messages,
                 tools=tools,
                 **kwargs
             )
             
-            # Token 审计
+            # Token 审计 (OneAPI 通常不返回精确成本，这里仅记录 Token 数)
             if response.usage:
                 input_tokens = response.usage.prompt_tokens
                 output_tokens = response.usage.completion_tokens
-                cost = (input_tokens / 1000 * model_config.cost_per_1k_input) + \
-                       (output_tokens / 1000 * model_config.cost_per_1k_output)
+                # 成本估算暂时置为 0，因为 OneAPI 费率复杂，建议在 OneAPI 后台查看
+                cost = 0.0 
                 
                 usage_record = TokenUsage(
-                    model=model_alias or self.default_model,
+                    model=target_model,
                     input_tokens=input_tokens,
                     output_tokens=output_tokens,
                     total_cost=cost,
                     timestamp=start_time.isoformat()
                 )
                 self.usage_log.append(usage_record)
-                logger.info(f"LLM 调用完成: {model_alias}, Cost: ${cost:.4f}")
+                logger.info(f"LLM 调用完成: {target_model}, Tokens: {input_tokens}/{output_tokens}")
                 
             return response
             
         except Exception as e:
-            logger.error(f"LLM 调用失败 ({model_alias}): {e}")
+            logger.error(f"LLM 调用失败 ({target_model}): {e}")
             raise
 
     def get_usage_summary(self) -> Dict[str, Any]:
