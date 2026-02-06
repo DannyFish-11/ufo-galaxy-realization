@@ -3,7 +3,7 @@
     "host": "0.0.0.0",
     "port": 8015,
 
-    "deepseek_ocr2_api_key": "",
+    "deepseek_ocr2_api_key": "sk_gUck7y3XEMbQ7AgnF0bQM_Syutpv-KITXXRAWy3DPI4",
     "deepseek_ocr2_api_base": "https://api.novita.ai/openai",
     "deepseek_ocr2_model": "deepseek/deepseek-ocr-2",
 
