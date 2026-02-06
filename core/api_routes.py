@@ -517,7 +517,11 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
             # 在生产环境中，这里应该连接 OpenAI/DeepSeek API
             
             # 2. 获取执行计划
-            # plan_result = await scheduler.plan_and_execute(req.instruction, llm_client, req.context)
+            # 注入实时设备列表作为上下文
+            execution_context = req.context.copy()
+            execution_context["devices"] = registered_devices
+            
+            # plan_result = await scheduler.plan_and_execute(req.instruction, llm_client, execution_context)
             
             # 3. 执行计划 (这里简化演示，直接查找匹配的节点)
             # 真正的实现需要 LLM 的参与。为了确保"切实可行"，我们先实现一个基于规则的简单分发，

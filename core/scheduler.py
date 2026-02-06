@@ -71,17 +71,44 @@ class AutonomousScheduler:
         """
         核心调度逻辑：
         1. 接收指令
-        2. 调用 LLM 进行规划 (Function Calling)
-        3. 解析并执行节点调用
-        4. 返回结果
+        2. 注入动态设备上下文 (Device-as-Node)
+        3. 调用 LLM 进行规划 (Function Calling)
+        4. 解析并执行节点调用
+        5. 返回结果
         """
+        # 1. 构建动态设备上下文
+        device_context = "No devices connected."
+        if context and "devices" in context:
+            devices = context["devices"]
+            if devices:
+                device_list_str = "\n".join([
+                    f"- Device ID: {d['device_id']}, Name: {d.get('device_name', 'Unknown')}, Type: {d.get('device_type', 'android')}, Capabilities: {d.get('capabilities', [])}"
+                    for d in devices.values()
+                ])
+                device_context = f"Connected Devices (Treat these as available hardware nodes):\n{device_list_str}"
+
+        system_prompt = f"""You are the central scheduler of the UFO Galaxy system. 
+Your goal is to satisfy the user's request by autonomously calling the available node tools.
+You can call multiple tools in sequence if needed.
+
+CRITICAL: "Device-as-Node" Protocol
+You have access to real-time connected hardware devices. 
+When the user's instruction implies using a specific device (e.g., "use the phone", "take a photo", "check battery"), 
+you MUST:
+1. Analyze the 'Connected Devices' list below.
+2. Select the most appropriate 'device_id' based on capabilities and name.
+3. Use the 'call_Node_82_NetworkGuard' or generic 'send_task' tool to target that specific device.
+
+{device_context}
+"""
+
         messages = [
-            {"role": "system", "content": "You are the central scheduler of the UFO Galaxy system. Your goal is to satisfy the user's request by autonomously calling the available node tools. You can call multiple tools in sequence if needed."},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": instruction}
         ]
         
-        if context:
-            messages.append({"role": "system", "content": f"Context: {json.dumps(context)}"})
+        # if context: # Context is now integrated into system prompt
+        #    messages.append({"role": "system", "content": f"Context: {json.dumps(context)}"})
 
         try:
             # 模拟 LLM 调用 (实际集成时需要传入真实的 client)
