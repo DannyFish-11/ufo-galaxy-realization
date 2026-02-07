@@ -46,8 +46,8 @@
             android:exported="false"
             android:foregroundServiceType="dataSync" />
 
-        <!-- MQTT Service -->
-        <service android:name="org.eclipse.paho.android.service.MqttService" />
+        <!-- MQTT Service (Deprecated, using WebSocket) -->
+        <!-- <service android:name="org.eclipse.paho.android.service.MqttService" /> -->
 
         <!-- Accessibility Service -->
         <service
