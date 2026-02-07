@@ -21,9 +21,11 @@
     *   创建 `ProcessNodeAdapter.py`: 允许统一启动器管理独立进程节点。
     *   创建 `DummyNode.py`: 为空壳节点提供标准回退实现，防止系统启动崩溃。
 
-### 1.3 Android 依赖缺失 (Major)
-*   **问题**: `AndroidManifest.xml` 声明了 MQTT 服务，但 `build.gradle` 未引入 MQTT 库，会导致编译失败。
+### 1.3 Android 依赖与权限 (Major)
+*   **问题 1**: `AndroidManifest.xml` 声明了 MQTT 服务，但 `build.gradle` 未引入 MQTT 库，会导致编译失败。
 *   **修复**: 移除了无效的 MQTT 服务声明，确认 WebSocket 依赖 (OkHttp) 完整。
+*   **问题 2**: `UFOAccessibilityService` 的 `exported` 属性设为 `false`，可能导致 Android 系统无法绑定该服务。
+*   **修复**: 将 `exported` 属性改为 `true`。
 
 ### 1.4 WebSocket 重连隐患 (Minor)
 *   **问题**: Android 端重连 10 次后会停止。
@@ -47,7 +49,7 @@
 
 ## 4. 结论
 
-经过地毯式排查和针对性修复，**UFO Galaxy 系统现已达到交付标准**。所有关键路径（启动、连接、控制）均已打通，潜在的崩溃点（空壳节点、依赖缺失）已被屏蔽或修复。
+经过地毯式排查和针对性修复，**UFO Galaxy 系统现已达到交付标准**。所有关键路径（启动、连接、控制）均已打通，潜在的崩溃点（空壳节点、依赖缺失、权限错误）已被屏蔽或修复。
 
 **建议下一步**:
 用户在部署时，只需关注 `start.sh` 的执行结果。如果看到大量 "Node started" 日志，即表示系统运行正常。
