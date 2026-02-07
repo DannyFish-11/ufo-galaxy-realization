@@ -152,7 +152,7 @@ class SystemConfig:
     
     # 服务配置
     web_ui_port: int = 8080
-    device_api_port: int = 8766
+    device_api_port: int = 8768
     ufo_api_port: int = 8767
     
     # 启动选项
@@ -393,8 +393,9 @@ class ServiceManager:
     async def start_websocket_server(self):
         """启动 WebSocket 服务器"""
         try:
-            async with serve(self.websocket_handler, "0.0.0.0", 8768):
-                logger.info("WebSocket 服务器已启动: ws://0.0.0.0:8768")
+            port = self.config.global_config.get("android_gateway_port", 8768)
+            async with serve(self.websocket_handler, "0.0.0.0", port):
+                logger.info(f"WebSocket 服务器已启动: ws://0.0.0.0:{port}")
                 await asyncio.Future()  # run forever
         except Exception as e:
             logger.error(f"WebSocket 服务器启动失败: {e}")

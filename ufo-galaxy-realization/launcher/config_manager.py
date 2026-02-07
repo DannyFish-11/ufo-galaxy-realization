@@ -79,7 +79,11 @@ class ConfigManager:
         self.base_path = base_path or Path(__file__).parent.parent
         self.nodes: Dict[str, NodeConfig] = {}
         self.groups: Dict[str, Dict[str, Any]] = {}
-        self.global_config: Dict[str, Any] = {}
+        self.global_config: Dict[str, Any] = {
+            "android_gateway_port": 8768,
+            "web_ui_port": 8080,
+            "api_port": 8000
+        }
         
         # Initialize with defaults
         self._init_defaults()
