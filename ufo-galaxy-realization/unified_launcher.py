@@ -349,10 +349,44 @@ class ServiceManager:
     async def websocket_handler(self, websocket):
         """处理 WebSocket 连接"""
         self.websocket_clients.add(websocket)
+        client_id = f"client_{id(websocket)}"
+        logger.info(f"新客户端连接: {client_id}")
+        
         try:
             async for message in websocket:
-                # 处理来自前端的消息（可选）
-                pass
+                try:
+                    data = json.loads(message)
+                    msg_type = data.get("type") or data.get("messageType")
+                    
+                    # 1. 心跳处理
+                    if msg_type == "heartbeat":
+                        await websocket.send(json.dumps({"type": "heartbeat_ack", "timestamp": time.time()}))
+                        continue
+                        
+                    # 2. 注册消息
+                    if msg_type == "register":
+                        device_id = data.get("payload", {}).get("device_id")
+                        if device_id:
+                            logger.info(f"设备注册: {device_id}")
+                            # TODO: 将设备注册到 DeviceManager
+                            
+                    # 3. 任务结果上报
+                    if msg_type == "result" or msg_type == "task_result":
+                        task_id = data.get("task_id") or data.get("payload", {}).get("task_id")
+                        logger.info(f"收到任务结果 [{task_id}]: {data}")
+                        # 广播给其他客户端（如 Web UI）
+                        await self.broadcast_signal(data)
+                        
+                    # 4. 打印调试日志
+                    logger.debug(f"收到消息 ({client_id}): {message[:100]}...")
+                    
+                except json.JSONDecodeError:
+                    logger.warning(f"收到无效 JSON: {message}")
+                except Exception as e:
+                    logger.error(f"处理消息异常: {e}")
+                    
+        except websockets.exceptions.ConnectionClosed:
+            logger.info(f"客户端断开连接: {client_id}")
         finally:
             self.websocket_clients.remove(websocket)
 
