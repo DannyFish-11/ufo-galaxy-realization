@@ -1,0 +1,11 @@
+{
+    "name": "Node_46_Camera",
+    "description": "Standard functional node.",
+    "capabilities": [
+        "generic_execution"
+    ],
+    "actions": [
+        "run"
+    ],
+    "version": "1.0.0"
+}

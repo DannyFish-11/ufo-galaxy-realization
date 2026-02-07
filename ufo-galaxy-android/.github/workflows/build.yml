@@ -1,0 +1,207 @@
+name: Android CI/CD Build
+
+on:
+  push:
+    branches: [ main, master, develop ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main, master, develop ]
+  workflow_dispatch:
+    inputs:
+      build_type:
+        description: 'Build type'
+        required: true
+        default: 'debug'
+        type: choice
+        options:
+          - debug
+          - release
+
+env:
+  JAVA_VERSION: '17'
+  GRADLE_VERSION: '8.2'
+
+jobs:
+  build:
+    name: Build Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v3
+      with:
+        gradle-version: ${{ env.GRADLE_VERSION }}
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Cache Gradle packages
+      uses: actions/cache@v4
+      with:
+        path: |
+          ~/.gradle/caches
+          ~/.gradle/wrapper
+        key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+        restore-keys: |
+          ${{ runner.os }}-gradle-
+
+    - name: Validate Gradle Wrapper
+      uses: gradle/wrapper-validation-action@v2
+
+    - name: Run Lint Check
+      run: ./gradlew lintDebug --continue
+
+    - name: Run Unit Tests
+      run: ./gradlew testDebugUnitTest --continue
+
+    - name: Build Debug APK
+      run: ./gradlew assembleDebug
+
+    - name: Get APK Info
+      id: apk_info
+      run: |
+        APK_PATH=$(find app/build/outputs/apk/debug -name "*.apk" | head -n 1)
+        APK_SIZE=$(du -h "$APK_PATH" | cut -f1)
+        echo "APK_PATH=$APK_PATH" >> $GITHUB_OUTPUT
+        echo "APK_SIZE=$APK_SIZE" >> $GITHUB_OUTPUT
+        echo "APK Size: $APK_SIZE"
+
+    - name: Upload Debug APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: debug-apk-${{ github.run_number }}
+        path: app/build/outputs/apk/debug/*.apk
+        retention-days: 30
+
+    - name: Upload Lint Report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: lint-report
+        path: app/build/reports/lint-results-debug.html
+        retention-days: 14
+
+    - name: Upload Test Reports
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-reports
+        path: app/build/reports/tests/
+        retention-days: 14
+
+  release:
+    name: Create Release
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK ${{ env.JAVA_VERSION }}
+      uses: actions/setup-java@v4
+      with:
+        java-version: ${{ env.JAVA_VERSION }}
+        distribution: 'temurin'
+        cache: gradle
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v3
+      with:
+        gradle-version: ${{ env.GRADLE_VERSION }}
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build Release APK
+      run: ./gradlew assembleRelease
+
+    - name: Sign Release APK
+      uses: r0adkll/sign-android-release@v1
+      id: sign_app
+      with:
+        releaseDirectory: app/build/outputs/apk/release
+        signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+        alias: ${{ secrets.ALIAS }}
+        keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+        keyPassword: ${{ secrets.KEY_PASSWORD }}
+      env:
+        BUILD_TOOLS_VERSION: "34.0.0"
+
+    - name: Get Version Name
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+    - name: Generate Release Notes
+      id: release_notes
+      run: |
+        echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+        echo "## UFO Galaxy Android Release ${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### 构建信息" >> $GITHUB_OUTPUT
+        echo "- **版本**: ${{ steps.get_version.outputs.VERSION }}" >> $GITHUB_OUTPUT
+        echo "- **构建时间**: $(date -u +'%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_OUTPUT
+        echo "- **提交**: ${{ github.sha }}" >> $GITHUB_OUTPUT
+        echo "- **分支**: ${{ github.ref_name }}" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### 下载" >> $GITHUB_OUTPUT
+        echo "- 下载 APK 文件进行安装" >> $GITHUB_OUTPUT
+        echo "- 支持 Android 8.0+ (API 26+)" >> $GITHUB_OUTPUT
+        echo "" >> $GITHUB_OUTPUT
+        echo "### 注意事项" >> $GITHUB_OUTPUT
+        echo "- Debug 版本使用调试签名" >> $GITHUB_OUTPUT
+        echo "- Release 版本使用发布签名" >> $GITHUB_OUTPUT
+        echo "EOF" >> $GITHUB_OUTPUT
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        name: Release ${{ steps.get_version.outputs.VERSION }}
+        draft: false
+        prerelease: false
+        files: |
+          app/build/outputs/apk/release/*.apk
+          ${{ steps.sign_app.outputs.signedReleaseFile }}
+        body: ${{ steps.release_notes.outputs.RELEASE_NOTES }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  notify:
+    name: Build Status Notification
+    needs: [build, release]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+    - name: Build Success Notification
+      if: needs.build.result == 'success' && (needs.release.result == 'success' || needs.release.result == 'skipped')
+      run: |
+        echo "✅ Build completed successfully!"
+        echo "📱 APK artifacts are available for download"
+        if [[ "${{ github.ref }}" == refs/tags/v* ]]; then
+          echo "🚀 Release published: ${{ github.ref_name }}"
+        fi
+
+    - name: Build Failure Notification
+      if: needs.build.result == 'failure' || needs.release.result == 'failure'
+      run: |
+        echo "❌ Build failed!"
+        echo "Please check the logs for details."
+        exit 1

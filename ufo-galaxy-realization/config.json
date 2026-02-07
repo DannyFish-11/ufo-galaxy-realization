@@ -1,0 +1,57 @@
+{
+  "web_ui_port": 8099,
+  "log_level": "INFO",
+  "system_mode": "hybrid", 
+  "primary_model_router": "oneapi", 
+  
+  "model_providers": {
+    "oneapi": {
+      "enabled": true,
+      "base_url": "http://localhost:3000/v1",
+      "api_key": "sk-ONEAPI_KEY_HERE",
+      "priority": 1,
+      "supported_models": ["gpt-4o", "claude-3-5-sonnet", "gemini-pro"]
+    },
+    "local_ollama": {
+      "enabled": true,
+      "base_url": "http://localhost:11434/v1",
+      "api_key": "ollama",
+      "priority": 2,
+      "supported_models": ["llama3", "mistral", "qwen2"]
+    },
+    "direct_deepseek": {
+      "enabled": true,
+      "base_url": "https://api.deepseek.com/v1",
+      "api_key": "sk-YOUR_DEEPSEEK_KEY_HERE",
+      "priority": 3,
+      "supported_models": ["deepseek-chat", "deepseek-coder"]
+    },
+    "direct_openai": {
+      "enabled": false,
+      "base_url": "https://api.openai.com/v1",
+      "api_key": "sk-YOUR_OPENAI_KEY_HERE",
+      "priority": 4,
+      "supported_models": ["gpt-4o", "gpt-3.5-turbo"]
+    }
+  },
+
+  "model_routing_rules": {
+    "complex_reasoning": ["oneapi/gpt-4o", "direct_deepseek/deepseek-chat"],
+    "coding": ["direct_deepseek/deepseek-coder", "oneapi/claude-3-5-sonnet"],
+    "fast_chat": ["local_ollama/llama3", "oneapi/gpt-3.5-turbo"],
+    "privacy_sensitive": ["local_ollama/llama3", "local_ollama/qwen2"]
+  },
+
+  "hardware_trigger": {
+    "enable_voice": false,
+    "enable_hotkey": true,
+    "hotkey_combination": "ctrl+shift+space"
+  },
+
+  "nodes": {
+    "Node_82_NetworkGuard": {
+      "enabled": true,
+      "tailscale_check_interval": 60
+    }
+  }
+}
