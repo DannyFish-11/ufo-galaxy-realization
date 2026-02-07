@@ -1145,6 +1145,116 @@
       "priority": 40,
       "group": "enhancement",
       "description": "Android GUI 理解引擎（VLM + 无障碍服务）"
+    },
+    "Node_27_SmartHome": {
+      "port": 8027,
+      "group": "extended",
+      "priority": 4,
+      "description": "智能家居控制节点",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_108_MetaCognition": {
+      "port": 8108,
+      "group": "academic",
+      "priority": 5,
+      "description": "元认知监控节点",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_109_ProactiveSensing": {
+      "port": 8109,
+      "group": "academic",
+      "priority": 5,
+      "description": "主动感知节点",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_116_ExternalToolWrapper": {
+      "port": 8116,
+      "group": "extended",
+      "priority": 4,
+      "description": "外部工具封装器",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_117_OpenCode": {
+      "port": 8117,
+      "group": "development",
+      "priority": 3,
+      "description": "代码解释器节点",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_118_NodeFactory": {
+      "port": 8118,
+      "group": "core",
+      "priority": 2,
+      "description": "节点工厂",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_120_File": {
+      "port": 8120,
+      "group": "core",
+      "priority": 2,
+      "description": "文件系统操作节点 (Renamed from Node_12)",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_121_Web": {
+      "port": 8121,
+      "group": "development",
+      "priority": 3,
+      "description": "Web服务节点 (Renamed from Node_13)",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_122_Shell": {
+      "port": 8122,
+      "group": "development",
+      "priority": 3,
+      "description": "Shell命令执行节点 (Renamed from Node_14)",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_123_AutonomousLearning": {
+      "port": 8123,
+      "group": "academic",
+      "priority": 5,
+      "description": "自主学习节点 (Renamed from Node_70)",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
+    },
+    "Node_124_MultiDeviceCoordination": {
+      "port": 8124,
+      "group": "extended",
+      "priority": 4,
+      "description": "多设备协同节点 (Renamed from Node_71)",
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": []
     }
   }
 }
