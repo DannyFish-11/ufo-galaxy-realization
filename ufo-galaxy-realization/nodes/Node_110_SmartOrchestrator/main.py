@@ -560,3 +560,26 @@ async def stop_orchestrator():
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8110)
+
+
+    def get_best_device_for_task(self, task_type):
+        # Mocking device registry lookup
+        # In production, this would query the central registry
+        devices = self.fetch_connected_devices()
+        
+        candidates = []
+        for device in devices:
+            caps = device.get('capabilities', {})
+            
+            if task_type == 'draw' and caps.get('is_tablet'):
+                return device # Prefer tablet for drawing
+            
+            if task_type == 'photo' and caps.get('has_camera'):
+                candidates.append(device)
+                
+        return candidates[0] if candidates else None
+
+    def fetch_connected_devices(self):
+        # Placeholder for API call to unified_launcher
+        return [] 
+    

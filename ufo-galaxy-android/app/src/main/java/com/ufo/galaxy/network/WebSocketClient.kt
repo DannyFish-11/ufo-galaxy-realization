@@ -204,6 +204,7 @@ class WebSocketClient(
                 put("accessibility", true)
                 put("voice_input", true)
                 put("webrtc", true)
+                put("is_tablet", android.content.res.Resources.getSystem().displayMetrics.widthPixels / android.content.res.Resources.getSystem().displayMetrics.density >= 600)
             })
         }
         sendMessage(message)

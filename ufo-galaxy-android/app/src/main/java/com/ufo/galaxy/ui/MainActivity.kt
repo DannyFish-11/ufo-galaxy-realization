@@ -1,3 +1,4 @@
+import androidx.compose.foundation.layout.Row
 package com.ufo.galaxy.ui
 
 import android.Manifest
