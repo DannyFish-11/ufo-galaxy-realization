@@ -959,10 +959,44 @@ def create_websocket_routes(app: FastAPI, service_manager=None):
                 data = await websocket.receive_json()
                 msg_type = data.get("type", "")
                 
-                if msg_type == "heartbeat":
+                if msg_type == "device_register" or msg_type == "register":
+                    # 设备注册 (兼容 v1 'register' 和 v2 'device_register')
+                    # 更新注册表
+                    reg_device_id = data.get("device_id", device_id)
+                    device_type = data.get("device_type", "android")
+                    
+                    registered_devices[reg_device_id] = {
+                        "device_id": reg_device_id,
+                        "device_type": device_type,
+                        "device_name": data.get("device_name", f"Device-{reg_device_id[:4]}"),
+                        "status": "online",
+                        "last_seen": datetime.now().isoformat(),
+                        "capabilities": data.get("capabilities", {}),
+                        "version": data.get("version", "1.0")
+                    }
+                    
+                    logger.info(f"收到设备注册消息: {reg_device_id} ({device_type})")
+                    
+                    # 发送注册确认 (v2 协议要求)
+                    await websocket.send_json({
+                        "type": "device_register_ack",
+                        "device_id": reg_device_id,
+                        "timestamp": datetime.now().isoformat(),
+                        "status": "success"
+                    })
+                    
+                    # 广播设备上线
+                    await connection_manager.broadcast_status({
+                        "type": "device_connected",
+                        "device_id": reg_device_id,
+                        "timestamp": datetime.now().isoformat()
+                    })
+
+                elif msg_type == "heartbeat":
                     # 心跳
                     if device_id in registered_devices:
                         registered_devices[device_id]["last_seen"] = datetime.now().isoformat()
+                        registered_devices[device_id]["status"] = "online"
                     await websocket.send_json({
                         "type": "heartbeat_ack",
                         "timestamp": datetime.now().isoformat()

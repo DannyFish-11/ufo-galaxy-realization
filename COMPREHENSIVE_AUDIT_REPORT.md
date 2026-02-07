@@ -27,9 +27,13 @@
 *   **问题 2**: `UFOAccessibilityService` 的 `exported` 属性设为 `false`，可能导致 Android 系统无法绑定该服务。
 *   **修复**: 将 `exported` 属性改为 `true`。
 
-### 1.4 WebSocket 重连隐患 (Minor)
-*   **问题**: Android 端重连 10 次后会停止。
-*   **建议**: 在生产环境中，建议将 `maxReconnectAttempts` 设为无限，或增加用户手动重连按钮。
+### 1.4 跨端协议不匹配 (Critical)
+*   **问题**: Android 端发送 `device_register` 消息，但后端仅支持旧版 `register` 消息，导致设备无法注册。此外，后端未发送 `heartbeat_ack` 和 `device_register_ack`，导致 Android 端可能误判连接状态。
+*   **修复**:
+    *   修改 `core/api_routes.py`，添加对 `device_register` 消息的支持。
+    *   实现 `device_register_ack` 回执发送。
+    *   实现 `heartbeat_ack` 回执发送。
+    *   添加设备注册成功后的全网广播 (`device_connected`)。
 
 ## 2. 节点状态概览
 
@@ -43,7 +47,7 @@
 
 ## 3. 协议一致性检查
 
-*   **WebSocket**: 端口 8768，JSON 格式 `UniversalMessage`。
+*   **WebSocket**: 端口 8768，JSON 格式 `UniversalMessage` (v2.0)。
 *   **ADB**: 端口 5037 (默认)，通过 Node 33 封装。
 *   **HTTP**: 端口 8000 (Node 00 API), 8080 (Web UI)。
 
