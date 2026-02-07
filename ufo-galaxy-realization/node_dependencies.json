@@ -289,16 +289,6 @@
       "optional_dependencies": [],
       "description": "Auto-generated config for Node_23_Calendar"
     },
-    "Node_23_Time": {
-      "port": 9000,
-      "group": "development",
-      "priority": 3,
-      "dependencies": [
-        "Node_01_OneAPI"
-      ],
-      "optional_dependencies": [],
-      "description": "Auto-generated config for Node_23_Time"
-    },
     "Node_24_Weather": {
       "port": 8024,
       "group": "development",
@@ -606,22 +596,6 @@
       "optional_dependencies": [],
       "description": "Auto-generated config for Node_48_MediaGen"
     },
-    "Node_48_Serial": {
-      "port": 9001,
-      "group": "extended",
-      "priority": 4,
-      "dependencies": [
-        "Node_01_OneAPI"
-      ],
-      "optional_dependencies": [],
-      "description": "串口通信节点，支持RS232/RS485设备连接和数据传输",
-      "capabilities": [
-        "serial_communication",
-        "device_connection",
-        "data_transfer",
-        "protocol_handling"
-      ]
-    },
     "Node_49_OctoPrint": {
       "port": 8049,
       "group": "extended",
@@ -691,16 +665,6 @@
       ],
       "optional_dependencies": [],
       "description": "Auto-generated config for Node_56_AgentSwarm"
-    },
-    "Node_56_Planning": {
-      "port": 9002,
-      "group": "extended",
-      "priority": 4,
-      "dependencies": [
-        "Node_01_OneAPI"
-      ],
-      "optional_dependencies": [],
-      "description": "Auto-generated config for Node_56_Planning"
     },
     "Node_57_QuantumCloud": {
       "port": 8057,
@@ -1255,6 +1219,42 @@
         "Node_01_OneAPI"
       ],
       "optional_dependencies": []
+    },
+    "Node_125_Time": {
+      "port": 8225,
+      "group": "development",
+      "priority": 3,
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": [],
+      "description": "Auto-generated config for Node_23_Time"
+    },
+    "Node_126_Serial": {
+      "port": 8226,
+      "group": "extended",
+      "priority": 4,
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": [],
+      "description": "串口通信节点，支持RS232/RS485设备连接和数据传输",
+      "capabilities": [
+        "serial_communication",
+        "device_connection",
+        "data_transfer",
+        "protocol_handling"
+      ]
+    },
+    "Node_127_Planning": {
+      "port": 8227,
+      "group": "extended",
+      "priority": 4,
+      "dependencies": [
+        "Node_01_OneAPI"
+      ],
+      "optional_dependencies": [],
+      "description": "Auto-generated config for Node_56_Planning"
     }
   }
 }
