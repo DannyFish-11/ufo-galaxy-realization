@@ -71,10 +71,22 @@ app.add_middleware(
 )
 
 # ============================================================================
-# 全局变量
+# 全局变量和单例
 # ============================================================================
 
-security_manager = SecurityManager()
+# 创建全局 SecurityManager 单例
+_security_manager_instance = None
+
+def get_security_manager() -> SecurityManager:
+    """获取 SecurityManager 单例"""
+    global _security_manager_instance
+    if _security_manager_instance is None:
+        _security_manager_instance = SecurityManager()
+        # 添加默认的 API Key（仅用于测试）
+        _security_manager_instance.generate_api_key("default_client")
+    return _security_manager_instance
+
+security_manager = get_security_manager()
 coordinator = None
 
 # ============================================================================
@@ -84,16 +96,15 @@ coordinator = None
 @app.on_event("startup")
 async def startup_event():
     """应用启动事件"""
-    global coordinator
+    global coordinator, security_manager
     
     logger.info("🚀 UFO Galaxy v2.0 启动中...")
     
+    # 确保 SecurityManager 单例已初始化
+    security_manager = get_security_manager()
+    
     # 初始化协调器
     coordinator = initialize_coordinator()
-    
-    # 初始化默认 API Key（仅用于测试，生产环境应该从配置文件或数据库读取）
-    default_api_key = security_manager.generate_api_key("default_client")
-    logger.info(f"默认 API Key: {default_api_key}")
     
     logger.info("✅ UFO Galaxy v2.0 启动完成")
 
