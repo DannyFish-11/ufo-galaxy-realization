@@ -41,3 +41,5 @@ volcengine
 vosk
 websockets
 zhipuai
+
+aiohttp>=3.8.0
