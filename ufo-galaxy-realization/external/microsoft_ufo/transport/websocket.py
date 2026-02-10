@@ -35,7 +35,7 @@ class WebSocketTransport(Transport):
     Usage:
         # Text messages (JSON)
         transport = WebSocketTransport(ping_interval=30, ping_timeout=180)
-        await transport.connect("ws://localhost:8000/ws")
+        await transport.connect("ws://localhost:8768/ws")
         await transport.send(b"Hello")
         data = await transport.receive()
 

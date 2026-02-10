@@ -1256,5 +1256,6 @@
       "optional_dependencies": [],
       "description": "Auto-generated config for Node_56_Planning"
     }
-  }
+  },
+  "version": "1.0.0"
 }

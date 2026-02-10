@@ -854,3 +854,11 @@ async def export_academic_bibtex(paper_ids: List[str]):
         "count": len(paper_ids),
         "bibtex": bibtex
     }
+    async def execute(self, input_data: dict) -> dict:
+        """执行节点逻辑"""
+        try:
+            # TODO: 实现节点逻辑
+            return {"success": True, "message": "Node executed"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+

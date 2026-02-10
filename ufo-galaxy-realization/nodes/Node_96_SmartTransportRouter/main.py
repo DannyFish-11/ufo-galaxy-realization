@@ -307,7 +307,7 @@ async def startup_event():
     default_config = NodeConfig(
         endpoints={
             Protocol.HTTP: "http://api.example.com/data",
-            Protocol.WEBSOCKET: "ws://ws.example.com/events",
+            Protocol.WEBSOCKET: "ws://localhost:8768",
             Protocol.MQTT: "iot_device_data_topic"
         },
         routing_rules={
@@ -396,3 +396,11 @@ if __name__ == "__main__":
         port=config.health_check_port
     )
 '''
+    async def execute(self, input_data: dict) -> dict:
+        """执行节点逻辑"""
+        try:
+            # TODO: 实现节点逻辑
+            return {"success": True, "message": "Node executed"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+

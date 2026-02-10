@@ -12,7 +12,7 @@ import threading # 导入桌面自动化模块
 # 从环境变量或默认值获取配置
 import argparse
 
-NODE_50_URL = os.environ.get("NODE_50_URL", "ws://localhost:8050")
+NODE_50_URL = os.environ.get("NODE_50_URL", "ws://localhost:8768")
 DEVICE_ID = os.environ.get("DEVICE_ID", "Windows_UFO_Client_001")
 
 

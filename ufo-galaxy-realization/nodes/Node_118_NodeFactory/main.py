@@ -493,3 +493,11 @@ if __name__ == "__main__":
 def get_node_instance():
     """返回全局 NodeFactory 实例"""
     return node_factory
+    async def execute(self, input_data: dict) -> dict:
+        """执行节点逻辑"""
+        try:
+            # TODO: 实现节点逻辑
+            return {"success": True, "message": "Node executed"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+

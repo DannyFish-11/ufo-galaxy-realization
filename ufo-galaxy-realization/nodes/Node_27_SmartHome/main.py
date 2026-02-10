@@ -504,6 +504,14 @@ async def main():
     stats = await node.execute("get_stats", {})
     print(f"Stats: {stats}")
 
+    async def handle_input(self, input_data: dict) -> dict:
+        """处理输入数据"""
+        try:
+            result = await self.execute(input_data)
+            return {"success": True, "result": result}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
 
 if __name__ == "__main__":
     asyncio.run(main())

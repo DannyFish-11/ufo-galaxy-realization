@@ -328,6 +328,14 @@ class SampleLoggerPlugin(BasePlugin):
 """
     with open(os.path.join(plugin_dir, "sample_plugin.py"), "w", encoding="utf-8") as f:
         f.write(sample_plugin_code)
+    async def handle_input(self, input_data: dict) -> dict:
+        """处理输入数据"""
+        try:
+            result = await self.execute(input_data)
+            return {"success": True, "result": result}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
 
     # 运行主服务
     asyncio.run(main())

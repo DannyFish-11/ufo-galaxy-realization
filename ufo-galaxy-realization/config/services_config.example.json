@@ -49,5 +49,6 @@
       "OneAPI 用于 NLU 引擎的 AI 模型调用",
       "支持 OpenAI、Claude、Gemini 等多种模型"
     ]
-  }
+  },
+  "version": "1.0.0"
 }

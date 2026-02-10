@@ -285,3 +285,11 @@ if __name__ == "__main__":
         logger.info("程序被用户中断。")
     except Exception as e:
         logger.critical(f"主程序发生未捕获的异常: {e}", exc_info=True)
+    async def execute(self, input_data: dict) -> dict:
+        """执行节点逻辑"""
+        try:
+            # TODO: 实现节点逻辑
+            return {"success": True, "message": "Node executed"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+

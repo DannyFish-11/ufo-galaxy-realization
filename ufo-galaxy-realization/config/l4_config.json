@@ -77,5 +77,6 @@
     "enable_monitoring": true,
     "check_interval": 30.0,
     "alert_on_critical": true
-  }
+  },
+  "version": "1.0.0"
 }

@@ -242,4 +242,11 @@ if __name__ == "__main__":
     # 注意：uvicorn.run()本身是阻塞的，所以这里实际上不会在main()返回后继续执行
     # 这种结构是为了保持异步代码的一致性
     asyncio.run(main())
+    async def execute(self, input_data: dict) -> dict:
+        """执行节点逻辑"""
+        try:
+            # TODO: 实现节点逻辑
+            return {"success": True, "message": "Node executed"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
 

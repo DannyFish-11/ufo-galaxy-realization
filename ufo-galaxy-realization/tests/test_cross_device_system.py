@@ -184,7 +184,7 @@ async def test_single_device_task():
     android_client = TestClient("Android_Test_Device", "android")
     
     # 连接到 Node 50
-    await android_client.connect("ws://localhost:9000/ws/agent")
+    await android_client.connect("ws://localhost:8768/ws/agent")
     
     # 启动监听
     listen_task = asyncio.create_task(android_client.listen())
@@ -216,8 +216,8 @@ async def test_cross_device_task():
     windows_client = TestClient("Windows_Test_Device", "windows")
     
     # 连接到 Node 50
-    await android_client.connect("ws://localhost:9000/ws/agent")
-    await windows_client.connect("ws://localhost:9000/ws/agent")
+    await android_client.connect("ws://localhost:8768/ws/agent")
+    await windows_client.connect("ws://localhost:8768/ws/agent")
     
     # 启动监听
     android_listen = asyncio.create_task(android_client.listen())
@@ -251,7 +251,7 @@ async def test_voice_command():
     android_client = TestClient("Android_Test_Device", "android")
     
     # 连接到 Node 50
-    await android_client.connect("ws://localhost:9000/ws/agent")
+    await android_client.connect("ws://localhost:8768/ws/agent")
     
     # 启动监听
     listen_task = asyncio.create_task(android_client.listen())

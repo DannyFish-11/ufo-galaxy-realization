@@ -315,3 +315,11 @@ class DigitalTwinService:
             except asyncio.CancelledError:
                 pass # 任务取消是预期的
         logger.info(f"服务 {self.config.node_id} 已成功停止")
+    async def execute(self, input_data: dict) -> dict:
+        """执行节点逻辑"""
+        try:
+            # TODO: 实现节点逻辑
+            return {"success": True, "message": "Node executed"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+

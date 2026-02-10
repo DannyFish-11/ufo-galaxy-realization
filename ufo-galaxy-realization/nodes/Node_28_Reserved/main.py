@@ -331,4 +331,12 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("主程序被强制中断。")
 
+    async def handle_input(self, input_data: dict) -> dict:
+        """处理输入数据"""
+        try:
+            result = await self.execute(input_data)
+            return {"success": True, "result": result}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
 

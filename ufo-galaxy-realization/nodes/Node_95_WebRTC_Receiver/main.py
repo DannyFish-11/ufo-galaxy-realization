@@ -439,8 +439,16 @@ if __name__ == "__main__":
     logger.info("Node_95: WebRTC Receiver v2.0 (完整实现)")
     logger.info("="*80)
     logger.info("Starting on port 8095")
-    logger.info("WebRTC signaling: ws://localhost:8095/signaling/{device_id}")
+    logger.info("WebRTC signaling: ws://localhost:8768/signaling/{device_id}")
     logger.info("HTTP API: http://localhost:8095")
     logger.info("="*80)
     
     uvicorn.run(app, host="0.0.0.0", port=8095, log_level="info")
+    async def execute(self, input_data: dict) -> dict:
+        """执行节点逻辑"""
+        try:
+            # TODO: 实现节点逻辑
+            return {"success": True, "message": "Node executed"}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+

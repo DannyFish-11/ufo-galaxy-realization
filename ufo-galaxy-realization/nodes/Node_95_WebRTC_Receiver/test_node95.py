@@ -17,7 +17,7 @@ import websockets
 import json
 
 NODE_95_URL = "http://localhost:8095"
-NODE_95_WS = "ws://localhost:8095"
+NODE_95_WS = "ws://localhost:8768"
 
 async def test_http_api():
     """测试 HTTP API"""

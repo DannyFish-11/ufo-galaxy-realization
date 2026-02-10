@@ -284,6 +284,14 @@ async def main():
     assert service.status == NodeStatus.STOPPED, "服务未成功停止"
     logger.info("--- 所有测试通过 ---")
 
+    async def handle_input(self, input_data: dict) -> dict:
+        """处理输入数据"""
+        try:
+            result = await self.execute(input_data)
+            return {"success": True, "result": result}
+        except Exception as e:
+            return {"success": False, "error": str(e)}
+
 
 if __name__ == "__main__":
     try:
