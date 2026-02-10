@@ -14,7 +14,7 @@ def _import_node_main():
     if not os.path.exists(main_path):
         return None
     spec = importlib.util.spec_from_file_location(
-        "Node_48_Serial.main", main_path,
+        "Node_126_Serial.main", main_path,
         submodule_search_locations=[_node_dir]
     )
     module = importlib.util.module_from_spec(spec)

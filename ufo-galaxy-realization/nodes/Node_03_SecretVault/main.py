@@ -44,7 +44,7 @@ class SecretVault:
         vault_file = os.getenv("SECRETVAULT_FILE", "/tmp/secretvault.json")
         if os.path.exists(vault_file):
             try:
-                with open(vault_file, 'r') as f:
+                with open(vault_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     for key, secret_data in data.get("secrets", {}).items():
                         self._secrets[key] = Secret(**secret_data)

@@ -1294,7 +1294,7 @@ class ExternalDeviceListener:
                     for device_dir in os.listdir(usb_path):
                         product_file = os.path.join(usb_path, device_dir, "product")
                         if os.path.exists(product_file):
-                            with open(product_file, 'r') as f:
+                            with open(product_file, 'r', encoding='utf-8') as f:
                                 product = f.read().strip()
                                 if product:
                                     devices.add(product)

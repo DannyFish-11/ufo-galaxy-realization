@@ -263,7 +263,7 @@ async def main():
         download_success = await service.download_file(remote_file, local_download_file)
         if download_success:
             logger.info(f"文件 '{remote_file}' 成功下载到 '{local_download_file}'")
-            with open(local_download_file, "r") as f:
+            with open(local_download_file, 'r', encoding='utf-8') as f:
                 logger.info(f"下载的文件内容: '{f.read()}'")
         else:
             logger.error("文件下载失败。")

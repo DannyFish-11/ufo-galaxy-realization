@@ -3,7 +3,7 @@ import ast
 import sys
 
 def get_imports_from_file(filepath):
-    with open(filepath, 'r') as f:
+    with open(filepath, 'r', encoding='utf-8') as f:
         try:
             tree = ast.parse(f.read())
         except SyntaxError:
@@ -41,7 +41,7 @@ def check_dependencies(nodes_dir="nodes", req_file="requirements.txt"):
         print(f"❌ Missing requirements.txt")
         return
         
-    with open(req_file, 'r') as f:
+    with open(req_file, 'r', encoding='utf-8') as f:
         requirements = {line.strip().split('==')[0].split('>=')[0].lower() for line in f if line.strip() and not line.startswith('#')}
         
     # 3. Compare

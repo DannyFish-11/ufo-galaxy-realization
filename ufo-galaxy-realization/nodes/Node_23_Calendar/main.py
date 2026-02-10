@@ -52,7 +52,7 @@ class CalendarManager:
         """加载事件"""
         if os.path.exists(CALENDAR_FILE):
             try:
-                with open(CALENDAR_FILE, 'r') as f:
+                with open(CALENDAR_FILE, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     for event_data in data.get("events", []):
                         event = Event(**event_data)

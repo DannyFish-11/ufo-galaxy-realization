@@ -1,12 +1,12 @@
 {
-    "name": "Node_01_OneAPI",
-    "description": "Unified interface for accessing multiple LLM models via OneAPI.",
-    "capabilities": [
-        "llm_inference"
-    ],
-    "actions": [
-        "chat_completion",
-        "list_models"
-    ],
-    "version": "1.0.0"
+  "name": "Node_01_OneAPI",
+  "description": "Unified interface for accessing multiple LLM models via OneAPI.",
+  "capabilities": [
+    "llm_inference"
+  ],
+  "actions": [
+    "chat_completion",
+    "list_models"
+  ],
+  "version": "1.0.0"
 }

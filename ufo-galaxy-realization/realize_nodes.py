@@ -125,7 +125,7 @@ def realize_nodes(nodes_dir="nodes"):
         if not os.path.exists(entry_path):
             needs_update = True
         else:
-            with open(entry_path, 'r') as f:
+            with open(entry_path, 'r', encoding='utf-8') as f:
                 content = f.read()
                 # 关键修复：如果文件中没有 class Node 且没有 class FusionNode，必须更新
                 has_node_class = "class Node" in content

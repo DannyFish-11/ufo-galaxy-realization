@@ -1,12 +1,12 @@
 {
-    "name": "Node_00_StateMachine",
-    "description": "Manages the state transitions of the autonomous agent.",
-    "capabilities": [
-        "state_management"
-    ],
-    "actions": [
-        "transition",
-        "get_state"
-    ],
-    "version": "1.0.0"
+  "name": "Node_00_StateMachine",
+  "description": "Manages the state transitions of the autonomous agent.",
+  "capabilities": [
+    "state_management"
+  ],
+  "actions": [
+    "transition",
+    "get_state"
+  ],
+  "version": "1.0.0"
 }

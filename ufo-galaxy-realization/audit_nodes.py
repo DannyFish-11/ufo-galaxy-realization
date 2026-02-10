@@ -26,7 +26,7 @@ def audit_nodes(nodes_dir="nodes"):
             continue
             
         try:
-            with open(config_path, 'r') as f:
+            with open(config_path, 'r', encoding='utf-8') as f:
                 config = json.load(f)
                 if "capabilities" not in config or "actions" not in config:
                     issues.append(f"⚠️ {node}: Invalid config.json structure")
@@ -40,7 +40,7 @@ def audit_nodes(nodes_dir="nodes"):
             
         # 3. Check code validity (Syntax Check)
         try:
-            with open(entry_path, 'r') as f:
+            with open(entry_path, 'r', encoding='utf-8') as f:
                 source = f.read()
             compile(source, entry_path, 'exec')
         except SyntaxError as e:

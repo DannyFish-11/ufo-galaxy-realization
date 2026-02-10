@@ -106,7 +106,7 @@ def load_image(episode, image_path, data_name):
         img = origin_img.resize((w,h),resample=Image.Resampling.LANCZOS)
         return img
 
-    image = Image.open(image_path).convert("RGB")
+    image = Image.open(image_path, 'r', encoding='utf-8').convert("RGB")
     image = __resize__(image)
 
     if data_name == 'android_control_low_test':

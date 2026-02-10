@@ -369,7 +369,7 @@ class BroadcastRequest(BaseModel):
 # API 端点
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "node": "Node_71_MultiDeviceCoordination"}
+    return {"status": "healthy", "node": "Node_124_MultiDeviceCoordination"}
 
 @app.get("/status")
 async def get_status():

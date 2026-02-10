@@ -6,7 +6,7 @@ def test_mcp_alignment():
     
     # 1. 检查关键节点代码是否包含新功能
     print("\n[1] Checking Node 14 (YouTube/FFmpeg)...")
-    with open("nodes/Node_14_FFmpeg/main.py", "r") as f:
+    with open("nodes/Node_14_FFmpeg/main.py", 'r', encoding='utf-8') as f:
         content = f.read()
         if "youtube_download" in content and "youtube_info" in content:
             print("✅ Node 14: YouTube tools integrated.")
@@ -14,7 +14,7 @@ def test_mcp_alignment():
             print("❌ Node 14: YouTube tools missing.")
 
     print("\n[2] Checking Node 13 (Arxiv/SQLite)...")
-    with open("nodes/Node_13_SQLite/main.py", "r") as f:
+    with open("nodes/Node_13_SQLite/main.py", 'r', encoding='utf-8') as f:
         content = f.read()
         if "search_arxiv" in content and "download_paper" in content:
             print("✅ Node 13: Arxiv tools integrated.")
@@ -50,7 +50,7 @@ def test_mcp_alignment():
         "mcp-weather": "8015"
     }
     
-    with open("podman-compose.yml", "r") as f:
+    with open("podman-compose.yml", 'r', encoding='utf-8') as f:
         compose_content = f.read()
         for service, port in expected_ports.items():
             if f"{service}:" in compose_content and f'"{port}:{port}"' in compose_content:

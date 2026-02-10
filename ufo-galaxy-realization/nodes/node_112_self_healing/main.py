@@ -519,7 +519,7 @@ def main():
 
     config = {}
     if args.config and os.path.exists(args.config):
-        with open(args.config, "r") as f:
+        with open(args.config, 'r', encoding='utf-8') as f:
             config = json.load(f)
 
     config["check_interval"] = args.interval

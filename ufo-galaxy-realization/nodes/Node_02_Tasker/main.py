@@ -62,7 +62,7 @@ class TaskManager:
         persist_file = os.getenv("TASKER_PERSIST_FILE", "/tmp/tasker_tasks.json")
         if os.path.exists(persist_file):
             try:
-                with open(persist_file, 'r') as f:
+                with open(persist_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     for task_data in data.get("tasks", []):
                         task = Task(**task_data)

@@ -222,7 +222,7 @@ class ResumableTransferManager:
         if not os.path.exists(state_file):
             return None
         
-        with open(state_file, 'r') as f:
+        with open(state_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
         session = TransferSession.from_dict(data)

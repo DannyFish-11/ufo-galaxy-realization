@@ -458,7 +458,7 @@ class QWenTokenizer(PreTrainedTokenizer):
             image = Image.open(requests.get(image, stream=True).raw).convert("RGB")
             h, w = image.height, image.width
         else:
-            image = np.asarray(Image.open(image).convert("RGB"))
+            image = np.asarray(Image.open(image, 'r', encoding='utf-8').convert("RGB"))
             h, w = image.shape[0], image.shape[1]
         visualizer = Visualizer(image)
 

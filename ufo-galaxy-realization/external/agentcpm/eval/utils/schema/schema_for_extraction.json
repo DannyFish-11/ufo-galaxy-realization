@@ -87,95 +87,248 @@
   "allOf": [
     {
       "if": {
-        "required": ["to"]
+        "required": [
+          "to"
+        ]
       },
       "then": {
-        "required": ["POINT"]
+        "required": [
+          "POINT"
+        ]
       }
     },
     {
       "if": {
         "anyOf": [
-          { "not": { "required": ["STATUS"] } },
-          { "properties": { "STATUS": { "enum": ["continue", "start"] } } }
+          {
+            "not": {
+              "required": [
+                "STATUS"
+              ]
+            }
+          },
+          {
+            "properties": {
+              "STATUS": {
+                "enum": [
+                  "continue",
+                  "start"
+                ]
+              }
+            }
+          }
         ]
       },
       "then": {
         "anyOf": [
-          { "required": ["POINT"] },
-          { "required": ["PRESS"] },
-          { "required": ["TYPE"] },
-          { "required": ["DEEP_LINK"] },
-          { "required": ["CLEAR"] },
-          { "required": ["duration"] }
+          {
+            "required": [
+              "POINT"
+            ]
+          },
+          {
+            "required": [
+              "PRESS"
+            ]
+          },
+          {
+            "required": [
+              "TYPE"
+            ]
+          },
+          {
+            "required": [
+              "DEEP_LINK"
+            ]
+          },
+          {
+            "required": [
+              "CLEAR"
+            ]
+          },
+          {
+            "required": [
+              "duration"
+            ]
+          }
         ]
       }
     },
     {
       "oneOf": [
         {
-          "required": ["POINT"],
+          "required": [
+            "POINT"
+          ],
           "not": {
             "anyOf": [
-              { "required": ["PRESS"] },
-              { "required": ["TYPE"] },
-              { "required": ["DEEP_LINK"] },
-              { "required": ["CLEAR"] }
+              {
+                "required": [
+                  "PRESS"
+                ]
+              },
+              {
+                "required": [
+                  "TYPE"
+                ]
+              },
+              {
+                "required": [
+                  "DEEP_LINK"
+                ]
+              },
+              {
+                "required": [
+                  "CLEAR"
+                ]
+              }
             ]
           }
         },
         {
-          "required": ["PRESS"],
+          "required": [
+            "PRESS"
+          ],
           "not": {
             "anyOf": [
-              { "required": ["POINT"] },
-              { "required": ["TYPE"] },
-              { "required": ["DEEP_LINK"] },
-              { "required": ["CLEAR"] }
+              {
+                "required": [
+                  "POINT"
+                ]
+              },
+              {
+                "required": [
+                  "TYPE"
+                ]
+              },
+              {
+                "required": [
+                  "DEEP_LINK"
+                ]
+              },
+              {
+                "required": [
+                  "CLEAR"
+                ]
+              }
             ]
           }
         },
         {
-          "required": ["TYPE"],
+          "required": [
+            "TYPE"
+          ],
           "not": {
             "anyOf": [
-              { "required": ["POINT"] },
-              { "required": ["PRESS"] },
-              { "required": ["DEEP_LINK"] },
-              { "required": ["CLEAR"] }
+              {
+                "required": [
+                  "POINT"
+                ]
+              },
+              {
+                "required": [
+                  "PRESS"
+                ]
+              },
+              {
+                "required": [
+                  "DEEP_LINK"
+                ]
+              },
+              {
+                "required": [
+                  "CLEAR"
+                ]
+              }
             ]
           }
         },
         {
-          "required": ["DEEP_LINK"],
+          "required": [
+            "DEEP_LINK"
+          ],
           "not": {
             "anyOf": [
-              { "required": ["POINT"] },
-              { "required": ["PRESS"] },
-              { "required": ["TYPE"] },
-              { "required": ["CLEAR"] }
+              {
+                "required": [
+                  "POINT"
+                ]
+              },
+              {
+                "required": [
+                  "PRESS"
+                ]
+              },
+              {
+                "required": [
+                  "TYPE"
+                ]
+              },
+              {
+                "required": [
+                  "CLEAR"
+                ]
+              }
             ]
           }
         },
         {
-          "required": ["CLEAR"],
+          "required": [
+            "CLEAR"
+          ],
           "not": {
             "anyOf": [
-              { "required": ["POINT"] },
-              { "required": ["PRESS"] },
-              { "required": ["TYPE"] },
-              { "required": ["DEEP_LINK"] }
+              {
+                "required": [
+                  "POINT"
+                ]
+              },
+              {
+                "required": [
+                  "PRESS"
+                ]
+              },
+              {
+                "required": [
+                  "TYPE"
+                ]
+              },
+              {
+                "required": [
+                  "DEEP_LINK"
+                ]
+              }
             ]
           }
         },
         {
           "not": {
             "anyOf": [
-              { "required": ["POINT"] },
-              { "required": ["PRESS"] },
-              { "required": ["TYPE"] },
-              { "required": ["DEEP_LINK"] },
-              { "required": ["CLEAR"] }
+              {
+                "required": [
+                  "POINT"
+                ]
+              },
+              {
+                "required": [
+                  "PRESS"
+                ]
+              },
+              {
+                "required": [
+                  "TYPE"
+                ]
+              },
+              {
+                "required": [
+                  "DEEP_LINK"
+                ]
+              },
+              {
+                "required": [
+                  "CLEAR"
+                ]
+              }
             ]
           }
         }

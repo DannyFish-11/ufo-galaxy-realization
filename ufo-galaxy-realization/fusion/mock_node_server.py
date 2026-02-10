@@ -156,7 +156,7 @@ async def start_all_mock_nodes(topology_config_path: str):
     logger.info("="*80)
     
     # 加载拓扑配置
-    with open(topology_config_path, 'r') as f:
+    with open(topology_config_path, 'r', encoding='utf-8') as f:
         topology_data = json.load(f)
     
     nodes = topology_data.get("nodes", [])

@@ -61,7 +61,7 @@ class EvalDataset(object):
         ep_data = []
         for episode_path in sampled_paths:
             try:
-                with open(episode_path, "r") as f:
+                with open(episode_path, 'r', encoding='utf-8') as f:
                     episode_data = json.load(f)
                     ep_data.append(episode_data)
             except json.JSONDecodeError as e:
@@ -121,7 +121,7 @@ def process_step_data(step_data, evaluator, save_dir):
             return None
 
         # Load the existing file
-        with open(cur_save_path, "r") as file:
+        with open(cur_save_path, 'r', encoding='utf-8') as file:
             try:
                 pred = json.load(file)
             except json.JSONDecodeError as e:

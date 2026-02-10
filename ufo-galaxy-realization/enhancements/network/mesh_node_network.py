@@ -478,7 +478,7 @@ class MeshNodeNetwork:
     
     def import_network_state(self, file_path: str):
         """导入网络状态"""
-        with open(file_path, 'r') as f:
+        with open(file_path, 'r', encoding='utf-8') as f:
             state = json.load(f)
         
         # 恢复节点

@@ -85,7 +85,7 @@ async def run_e2e_demo():
     # 2. 初始化模拟执行池
     logger.info("🎯 Step 2: Initialize Mock Execution Pool")
     import json
-    with open(topology_config, 'r') as f:
+    with open(topology_config, 'r', encoding='utf-8') as f:
         topology_data = json.load(f)
     
     execution_pool = MockExecutionPool(topology_data)

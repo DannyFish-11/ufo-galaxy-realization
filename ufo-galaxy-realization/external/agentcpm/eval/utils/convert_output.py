@@ -16,11 +16,11 @@ def load_json_data(file_path):
     # Determine file type, support both JSON and JSONL
     if file_path.endswith('.json'):
         # Handle JSON file
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
             data = json.load(file)
     elif file_path.endswith('.jsonl'):
         # Handle JSONL file
-        with open(file_path, 'r') as file:
+        with open(file_path, 'r', encoding='utf-8') as file:
             first_line = file.readline().strip()
             try:
                 json.loads(first_line)

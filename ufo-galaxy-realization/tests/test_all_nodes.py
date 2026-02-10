@@ -143,7 +143,7 @@ class NodeTester:
         
         # 检查 main.py 语法
         try:
-            with open(main_py, 'r') as f:
+            with open(main_py, 'r', encoding='utf-8') as f:
                 code = f.read()
             compile(code, main_py, 'exec')
         except SyntaxError as e:

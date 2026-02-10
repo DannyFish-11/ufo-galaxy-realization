@@ -654,7 +654,7 @@ class SmartTaskDistributor:
 # 便捷函数
 def create_weight_manager_from_topology(topology_file: str) -> DynamicWeightManager:
     """从拓扑配置文件创建权重管理器"""
-    with open(topology_file, 'r') as f:
+    with open(topology_file, 'r', encoding='utf-8') as f:
         topology = json.load(f)
     
     manager = DynamicWeightManager()

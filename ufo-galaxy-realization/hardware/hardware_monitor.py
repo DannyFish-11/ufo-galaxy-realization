@@ -242,7 +242,7 @@ class HardwareMonitor:
                             # Read temperature
                             temp_file = os.path.join(thermal_path, zone, "temp")
                             if os.path.exists(temp_file):
-                                with open(temp_file, 'r') as f:
+                                with open(temp_file, 'r', encoding='utf-8') as f:
                                     temp_millidegrees = int(f.read().strip())
                                     temp_c = temp_millidegrees / 1000.0
                                 
@@ -250,7 +250,7 @@ class HardwareMonitor:
                                 type_file = os.path.join(thermal_path, zone, "type")
                                 sensor_name = zone
                                 if os.path.exists(type_file):
-                                    with open(type_file, 'r') as f:
+                                    with open(type_file, 'r', encoding='utf-8') as f:
                                         sensor_name = f.read().strip()
                                 
                                 temperatures.append(TemperatureReading(
@@ -304,27 +304,27 @@ class HardwareMonitor:
                     # Read type
                     type_file = os.path.join(supply_path, "type")
                     if os.path.exists(type_file):
-                        with open(type_file, 'r') as f:
+                        with open(type_file, 'r', encoding='utf-8') as f:
                             supply_type = f.read().strip()
                         
                         if supply_type == "Battery":
                             # Read battery status
                             status_file = os.path.join(supply_path, "status")
                             if os.path.exists(status_file):
-                                with open(status_file, 'r') as f:
+                                with open(status_file, 'r', encoding='utf-8') as f:
                                     status = f.read().strip()
                                     power.is_on_battery = (status == "Discharging")
                             
                             # Read battery capacity
                             capacity_file = os.path.join(supply_path, "capacity")
                             if os.path.exists(capacity_file):
-                                with open(capacity_file, 'r') as f:
+                                with open(capacity_file, 'r', encoding='utf-8') as f:
                                     power.battery_percent = float(f.read().strip())
                             
                             # Read time remaining
                             time_file = os.path.join(supply_path, "time_to_empty")
                             if os.path.exists(time_file):
-                                with open(time_file, 'r') as f:
+                                with open(time_file, 'r', encoding='utf-8') as f:
                                     power.battery_time_remaining = int(f.read().strip()) // 60
         
         except Exception as e:
@@ -346,7 +346,7 @@ class HardwareMonitor:
                     # Read name
                     name_file = os.path.join(hwmon_dir, "name")
                     if os.path.exists(name_file):
-                        with open(name_file, 'r') as f:
+                        with open(name_file, 'r', encoding='utf-8') as f:
                             hwmon_name = f.read().strip()
                     else:
                         hwmon_name = hwmon
@@ -358,7 +358,7 @@ class HardwareMonitor:
                             fan_file = os.path.join(hwmon_dir, entry)
                             
                             try:
-                                with open(fan_file, 'r') as f:
+                                with open(fan_file, 'r', encoding='utf-8') as f:
                                     rpm = int(f.read().strip())
                                     fan_speeds[fan_name] = rpm
                             except (ValueError, IOError):
@@ -383,7 +383,7 @@ class HardwareMonitor:
                     # Read name
                     name_file = os.path.join(hwmon_dir, "name")
                     if os.path.exists(name_file):
-                        with open(name_file, 'r') as f:
+                        with open(name_file, 'r', encoding='utf-8') as f:
                             hwmon_name = f.read().strip()
                     else:
                         hwmon_name = hwmon
@@ -395,7 +395,7 @@ class HardwareMonitor:
                             voltage_file = os.path.join(hwmon_dir, entry)
                             
                             try:
-                                with open(voltage_file, 'r') as f:
+                                with open(voltage_file, 'r', encoding='utf-8') as f:
                                     millivolts = int(f.read().strip())
                                     volts = millivolts / 1000.0
                                     voltages[voltage_name] = volts

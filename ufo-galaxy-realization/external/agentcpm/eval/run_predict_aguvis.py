@@ -480,7 +480,7 @@ def process_data(episode:Dict,
             response = requests.get(image_file)
             image = Image.open(BytesIO(response.content)).convert("RGB")
         else:
-            image = Image.open(image_file).convert("RGB")
+            image = Image.open(image_file, 'r', encoding='utf-8').convert("RGB")
         return image
 
     image: Image = load_image(image_path)

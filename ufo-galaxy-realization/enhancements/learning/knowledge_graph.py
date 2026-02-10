@@ -737,7 +737,7 @@ class KnowledgeGraph:
     @classmethod
     def load(cls, filepath: str) -> 'KnowledgeGraph':
         """Load knowledge graph from file."""
-        with open(filepath, 'r') as f:
+        with open(filepath, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
         kg = cls(name=data.get('name', 'loaded_graph'))

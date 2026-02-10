@@ -387,7 +387,7 @@ class PredictRequest(BaseModel):
 # API 端点
 @app.get("/health")
 async def health_check():
-    return {"status": "healthy", "node": "Node_70_AutonomousLearning"}
+    return {"status": "healthy", "node": "Node_123_AutonomousLearning"}
 
 @app.get("/status")
 async def get_status():

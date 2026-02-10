@@ -80,7 +80,7 @@ class AutoGitUpdater:
         """加载配置"""
         if os.path.exists(self.config_file):
             try:
-                with open(self.config_file, 'r') as f:
+                with open(self.config_file, 'r', encoding='utf-8') as f:
                     config_data = json.load(f)
                 
                 for repo_data in config_data.get('repositories', []):

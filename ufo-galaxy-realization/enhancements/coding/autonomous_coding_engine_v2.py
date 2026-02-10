@@ -447,7 +447,7 @@ class AutonomousCodingEngineV2:
             full_path = os.path.join(self.workspace_root, file_path)
             if os.path.exists(full_path):
                 try:
-                    with open(full_path, 'r') as f:
+                    with open(full_path, 'r', encoding='utf-8') as f:
                         code[file_path] = f.read()
                 except Exception as e:
                     logger.warning(f"Failed to read {file_path}: {e}")

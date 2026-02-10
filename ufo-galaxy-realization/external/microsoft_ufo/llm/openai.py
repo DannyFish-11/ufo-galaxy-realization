@@ -379,7 +379,7 @@ class BaseOpenAIService(BaseService):
             try:
                 if not os.path.exists(token_cache_file):
                     return None
-                with open(token_cache_file, "r") as cache_file:
+                with open(token_cache_file, 'r', encoding='utf-8') as cache_file:
                     return AuthenticationRecord.deserialize(cache_file.read())
             except Exception as e:
                 print("failed to load auth record", e)

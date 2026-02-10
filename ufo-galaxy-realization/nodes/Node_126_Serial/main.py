@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Node_48_Serial: 串口通信节点
+Node_126_Serial: 串口通信节点
 
 该节点负责处理与外部设备之间的串口（RS232/RS485）通信。
 它支持异步读写操作，并提供状态查询和健康检查接口。
@@ -19,7 +19,7 @@ import serial_asyncio
 
 # --- 全局配置 ---
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO").upper()
-NODE_NAME = "Node_48_Serial"
+NODE_NAME = "Node_126_Serial"
 
 # --- 日志配置 ---
 logging.basicConfig(

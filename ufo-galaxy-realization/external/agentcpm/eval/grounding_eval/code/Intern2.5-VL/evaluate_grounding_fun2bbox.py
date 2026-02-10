@@ -43,7 +43,7 @@ class ChineseDataset(torch.utils.data.Dataset):
 
     def __init__(self, test, prompt, input_size=224, dynamic_image_size=False,
                  use_thumbnail=False, max_num=6):
-        self.datas = open(test).readlines()
+        self.datas = open(test, 'r', encoding='utf-8').readlines()
         self.prompt = prompt
         self.input_size = input_size
         self.dynamic_image_size = dynamic_image_size
@@ -67,7 +67,7 @@ class ChineseDataset(torch.utils.data.Dataset):
         bbox[2] += bbox[0]
         bbox[3] += bbox[1]
         gt_bbox = bbox
-        image = Image.open(image_path).convert('RGB')
+        image = Image.open(image_path, 'r', encoding='utf-8').convert('RGB')
         w, h = image.width, image.height
 
         if self.dynamic_image_size:

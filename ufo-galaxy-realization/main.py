@@ -111,7 +111,7 @@ class ConfigManager:
         """加载配置"""
         # 1. 从 .env 文件加载
         if self.env_file.exists():
-            with open(self.env_file, 'r') as f:
+            with open(self.env_file, 'r', encoding='utf-8') as f:
                 for line in f:
                     line = line.strip()
                     if line and not line.startswith('#') and '=' in line:
@@ -208,7 +208,7 @@ class NodeManager:
         """加载节点配置"""
         config_file = PROJECT_ROOT / "node_dependencies.json"
         if config_file.exists():
-            with open(config_file, 'r') as f:
+            with open(config_file, 'r', encoding='utf-8') as f:
                 return json.load(f)
         return {}
         

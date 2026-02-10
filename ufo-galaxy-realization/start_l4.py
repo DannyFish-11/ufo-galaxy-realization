@@ -19,7 +19,7 @@ from galaxy_main_loop_l4 import GalaxyMainLoopL4
 def load_config(config_path: str = "config/l4_config.json") -> dict:
     """加载配置文件"""
     try:
-        with open(config_path, 'r') as f:
+        with open(config_path, 'r', encoding='utf-8') as f:
             return json.load(f)
     except FileNotFoundError:
         logging.warning(f"配置文件 {config_path} 不存在，使用默认配置")

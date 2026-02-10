@@ -256,7 +256,7 @@ class SetupWizard:
         """加载现有配置"""
         # 从 .env 文件加载
         if self.env_file.exists():
-            with open(self.env_file, 'r') as f:
+            with open(self.env_file, 'r', encoding='utf-8') as f:
                 for line in f:
                     line = line.strip()
                     if line and not line.startswith('#') and '=' in line:

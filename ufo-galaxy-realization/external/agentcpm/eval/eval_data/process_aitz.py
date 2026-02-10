@@ -20,8 +20,8 @@ for jp in root.rglob('*.json'):
 
         img = root / Path(r[img_key])
 
-        w, h = Image.open(img).size
-        c = len(Image.open(img).getbands())
+        w, h = Image.open(img, 'r', encoding='utf-8').size
+        c = len(Image.open(img, 'r', encoding='utf-8').getbands())
         r['image_height'] = h
         r['image_width'] = w
         r['image_channels'] = c

@@ -41,7 +41,7 @@ class HybridLLMManager:
         """加载混合架构配置"""
         if os.path.exists(self.config_path):
             try:
-                with open(self.config_path, 'r') as f:
+                with open(self.config_path, 'r', encoding='utf-8') as f:
                     config = json.load(f)
                     
                     # 1. 加载 Providers

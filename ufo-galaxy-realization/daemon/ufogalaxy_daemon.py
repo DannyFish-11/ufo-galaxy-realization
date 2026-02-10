@@ -281,7 +281,7 @@ class UFOGalaxyDaemon:
         }
         
         if config_path and os.path.exists(config_path):
-            with open(config_path, 'r') as f:
+            with open(config_path, 'r', encoding='utf-8') as f:
                 user_config = json.load(f)
                 default_config.update(user_config)
         

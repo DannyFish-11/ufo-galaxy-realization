@@ -53,7 +53,7 @@ class AuthManager:
         users_file = os.getenv("AUTH_USERS_FILE", "/tmp/auth_users.json")
         if os.path.exists(users_file):
             try:
-                with open(users_file, 'r') as f:
+                with open(users_file, 'r', encoding='utf-8') as f:
                     data = json.load(f)
                     for username, user_data in data.get("users", {}).items():
                         self._users[username] = User(**user_data)
