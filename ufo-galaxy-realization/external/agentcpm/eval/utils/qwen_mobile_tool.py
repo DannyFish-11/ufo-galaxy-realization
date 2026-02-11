@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os.path as osp
 from matplotlib import pyplot as plt
 from PIL import Image

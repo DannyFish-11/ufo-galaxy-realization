@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 04: Enhanced Global Router & Intelligent Tool Discovery
 智能工具发现与 AI 驱动路由系统

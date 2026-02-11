@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Parser for text content parts (RawMessageList).
 
 Handles text content parts in multimodal messages.

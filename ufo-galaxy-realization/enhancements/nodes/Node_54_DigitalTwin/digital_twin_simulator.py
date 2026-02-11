@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy 数字孪生推演模块 - Node 54
 

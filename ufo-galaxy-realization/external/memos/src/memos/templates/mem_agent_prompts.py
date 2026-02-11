@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 QUERY_REWRITE_PROMPT = """
 You are a query rewriting specialist. Your task is to rewrite user queries to be more standalone and searchable.
 

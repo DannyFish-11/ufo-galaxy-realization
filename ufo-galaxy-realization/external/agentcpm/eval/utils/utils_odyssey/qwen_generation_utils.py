@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Copyright (c) Alibaba Cloud.
 #
 # This source code is licensed under the license found in the

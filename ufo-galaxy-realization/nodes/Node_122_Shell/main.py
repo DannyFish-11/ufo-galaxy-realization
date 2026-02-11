@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 14: Shell Operations
 UFO Galaxy 64-Core MCP Matrix - Core Tool Node

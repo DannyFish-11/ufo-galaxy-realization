@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """dinding_report_bot.py"""
 
 import base64

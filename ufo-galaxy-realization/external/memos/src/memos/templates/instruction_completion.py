@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import Any
 
 from memos.mem_reader.read_multi_modal import detect_lang

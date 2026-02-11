@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 """
 UFO³ Galaxy 系统管理器 v2.0 (修复版)

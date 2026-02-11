@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 INTENT_RECOGNIZING_PROMPT = """
 # User Intent Recognition Task
 

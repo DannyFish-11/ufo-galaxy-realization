@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 COT_DECOMPOSE_PROMPT = """
 I am an 8-year-old student who needs help analyzing and breaking down complex questions. Your task is to help me understand whether a question is complex enough to be broken down into smaller parts.
 

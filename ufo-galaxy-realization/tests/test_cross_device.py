@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy Cross-Device Integration Tests
 跨设备集成测试

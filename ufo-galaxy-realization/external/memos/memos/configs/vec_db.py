@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import Any, ClassVar, Literal
 
 from pydantic import Field, field_validator, model_validator

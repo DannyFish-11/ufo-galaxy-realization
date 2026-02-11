@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 79: Local LLM
 本地大语言模型服务 - 集成 Ollama

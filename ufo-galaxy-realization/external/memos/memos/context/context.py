@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Global request context management for trace_id and request-scoped data.
 

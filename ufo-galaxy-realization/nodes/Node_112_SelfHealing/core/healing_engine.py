@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_112_SelfHealing - 节点自愈引擎
 

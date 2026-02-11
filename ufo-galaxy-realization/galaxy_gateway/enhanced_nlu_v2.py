@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy - 增强版 NLU 引擎 v2.0
 

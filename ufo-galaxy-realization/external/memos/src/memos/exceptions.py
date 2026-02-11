@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Custom exceptions for the MemOS library.
 
 This module defines all custom exceptions used throughout the MemOS project.

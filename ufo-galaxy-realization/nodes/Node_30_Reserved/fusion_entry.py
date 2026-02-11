@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # 统一融合入口文件 - 由系统自动生成（已修复 sys.path 污染）
 import importlib.util
 import logging

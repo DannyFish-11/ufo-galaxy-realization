@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Windows 自主操纵模块
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node Factory Engine - 节点工厂引擎核心模块
 

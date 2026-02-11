@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Parser for system messages."""
 
 import ast

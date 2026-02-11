@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Scheduler Orchestrator for Redis-backed task queues.
 

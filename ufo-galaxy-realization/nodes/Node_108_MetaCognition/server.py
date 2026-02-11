@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_108_MetaCognition - FastAPI Server
 元认知节点服务器

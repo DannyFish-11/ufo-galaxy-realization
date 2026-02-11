@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Local Queue implementation for SchedulerMessageItem objects.
 This module provides a local-based queue implementation that can replace

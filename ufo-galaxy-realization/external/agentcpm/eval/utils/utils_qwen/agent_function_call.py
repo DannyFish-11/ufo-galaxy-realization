@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import Union, Tuple, List
 
 from qwen_agent.tools.base import BaseTool, register_tool

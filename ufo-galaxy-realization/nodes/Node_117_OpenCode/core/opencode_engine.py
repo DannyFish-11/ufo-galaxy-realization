@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 OpenCode Engine - OpenCode 专用引擎核心模块
 

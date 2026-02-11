@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 自主规划器 (Autonomous Planner)
 根据分解的子任务生成可执行的计划

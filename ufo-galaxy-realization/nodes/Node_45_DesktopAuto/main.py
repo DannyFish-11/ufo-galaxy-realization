@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 45: DesktopAuto - 跨平台桌面自动化
 """

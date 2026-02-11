@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 OctoPrint 3D 打印机控制器
 支持真实的 OctoPrint API 通信和模拟模式

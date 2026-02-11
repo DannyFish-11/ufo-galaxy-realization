@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from util.utils import get_som_labeled_img, check_ocr_box, get_caption_model_processor, get_yolo_model
 import torch
 from ultralytics import YOLO

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy - 编排模块
 """

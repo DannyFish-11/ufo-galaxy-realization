@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # memos/reranker/cosine_local.py
 from __future__ import annotations
 

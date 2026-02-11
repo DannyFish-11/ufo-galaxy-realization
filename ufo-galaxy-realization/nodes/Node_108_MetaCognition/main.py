@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 108 - MetaCognition (元认知节点)
 提供系统级的自我认知、反思和优化能力

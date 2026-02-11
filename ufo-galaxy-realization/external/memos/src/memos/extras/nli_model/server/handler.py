@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 from memos.extras.nli_model.server.config import NLI_MODEL_NAME, logger

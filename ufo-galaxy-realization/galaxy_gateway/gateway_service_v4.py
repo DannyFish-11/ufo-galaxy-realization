@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Galaxy Gateway v4.0 - 完整的视觉操控系统
 

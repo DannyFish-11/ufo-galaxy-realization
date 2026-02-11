@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Android Bridge Service
 UFO Galaxy - 服务端与安卓端对接桥接层

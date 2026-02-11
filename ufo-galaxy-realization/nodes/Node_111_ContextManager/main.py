@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 111 - ContextManager (上下文管理节点)
 提供会话上下文、状态管理和上下文切换能力

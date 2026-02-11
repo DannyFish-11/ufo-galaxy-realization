@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 STAGE1_EXPAND_RETRIEVE_PROMPT = """
 ## Goal
 Determine whether the current memories can answer the query using concrete, specific facts. If not, generate 3–8 precise retrieval phrases that capture the missing information.

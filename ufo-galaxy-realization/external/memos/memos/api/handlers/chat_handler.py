@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Chat handler for chat functionality (Class-based version).
 

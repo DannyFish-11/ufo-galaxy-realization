@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 70: BambuLab - 拓竹 3D 打印机控制
 """

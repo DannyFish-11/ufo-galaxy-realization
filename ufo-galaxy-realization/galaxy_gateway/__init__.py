@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy Gateway - 跨平台分布式 Agent 网关
 

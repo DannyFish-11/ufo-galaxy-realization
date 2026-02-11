@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Galaxy Gateway v5.0 - 自主学习和编程版本
 

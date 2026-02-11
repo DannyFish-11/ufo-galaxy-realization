@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Defines vector database item types."""
 
 import uuid

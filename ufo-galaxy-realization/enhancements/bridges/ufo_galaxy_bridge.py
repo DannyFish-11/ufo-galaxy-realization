@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy Bridge - 零破坏性桥接模块
 

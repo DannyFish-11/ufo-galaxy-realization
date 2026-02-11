@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy Fusion - Android Granular Adapter
 功能: 将 AIP v2.0 消息转化为 Node 33 (ADB) 可执行的颗粒级指令。

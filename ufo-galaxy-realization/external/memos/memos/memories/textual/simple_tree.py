@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import TYPE_CHECKING
 
 from memos.configs.memory import TreeTextMemoryConfig

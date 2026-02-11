@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Singleton decorator module for caching factory instances to avoid excessive memory usage
 from repeated initialization.

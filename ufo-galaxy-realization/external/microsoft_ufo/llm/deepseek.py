@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import Any, Dict, List, Optional, Tuple
 
 from ufo.llm.openai import BaseOpenAIService

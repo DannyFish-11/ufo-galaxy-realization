@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from memos.configs.llm import QwenLLMConfig
 from memos.llms.openai import OpenAILLM
 from memos.log import get_logger

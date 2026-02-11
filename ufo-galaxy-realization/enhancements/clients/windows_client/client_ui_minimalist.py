@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy Windows 客户端 - 黑白渐变极简极客风格 UI
 

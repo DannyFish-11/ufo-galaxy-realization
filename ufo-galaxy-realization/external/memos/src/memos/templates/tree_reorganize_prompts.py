@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 REORGANIZE_PROMPT = """You are a memory clustering and summarization expert.
 
 Given the following child memory items:

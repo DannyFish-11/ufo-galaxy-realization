@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 NAIVE_EXPLICIT_PREFERENCE_EXTRACT_PROMPT = """
 You are a preference extraction assistant.
 Please extract the user's explicitly mentioned preferences from the following conversation.

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Unified agent configuration getter for LLM calls.
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy 事件总线系统
 实现UI与L4主循环之间的双向通信

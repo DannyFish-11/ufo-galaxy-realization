@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 106: GitHub Flow
 ======================

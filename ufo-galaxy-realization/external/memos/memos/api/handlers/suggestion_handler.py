@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Suggestion handler for generating suggestion queries.
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from colorama import init, Fore, Style
 import os
 from utils.action_type import ActionType

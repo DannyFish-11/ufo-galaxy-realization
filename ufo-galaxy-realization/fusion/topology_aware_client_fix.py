@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 from .topology_aware_client import TopologyAwareConstellationClient

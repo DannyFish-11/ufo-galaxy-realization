@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Persistent user management system for MemOS with configuration storage.
 
 This module extends the MySQL UserManager to provide persistent storage

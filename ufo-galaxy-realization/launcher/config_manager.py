@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Configuration Manager for UFO Galaxy Launcher
 

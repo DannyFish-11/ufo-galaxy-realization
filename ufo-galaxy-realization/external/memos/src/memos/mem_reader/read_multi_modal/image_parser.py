@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Parser for image_url content parts."""
 
 import json

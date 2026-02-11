@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Parser for tool messages."""
 
 import json

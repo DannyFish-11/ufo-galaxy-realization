@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy Gateway - 超级网关
 统一调用 One-API、本地 LLM 和所有节点功能

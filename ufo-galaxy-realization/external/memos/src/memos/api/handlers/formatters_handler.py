@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Data formatting utilities for server handlers.
 

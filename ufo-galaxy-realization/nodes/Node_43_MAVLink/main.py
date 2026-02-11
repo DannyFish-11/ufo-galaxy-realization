@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 43: MAVLink - 无人机通信协议
 """

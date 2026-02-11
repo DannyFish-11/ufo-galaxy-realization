@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from memos.memories.textual.item import (
     TextualMemoryItem,
 )

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy - AIP v2.0 协议（Agent Interaction Protocol）
 

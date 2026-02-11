@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 TASK_CHUNKING_PROMPT = """
 # Context (Conversation Records)
 {{messages}}

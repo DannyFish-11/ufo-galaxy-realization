@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from memos.configs.embedder import SenTranEmbedderConfig
 from memos.dependency import require_python_package
 from memos.embedders.base import BaseEmbedder

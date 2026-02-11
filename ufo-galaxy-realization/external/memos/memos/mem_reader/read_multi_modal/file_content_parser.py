@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Parser for file content parts (RawMessageList)."""
 
 import concurrent.futures

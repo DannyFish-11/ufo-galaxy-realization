@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_114_OpenCode - FastAPI Server
 OpenCode 专用节点服务器

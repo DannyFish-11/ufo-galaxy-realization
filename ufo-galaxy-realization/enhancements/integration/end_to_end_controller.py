@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 End-to-End Controller for UFO Galaxy Realization.
 

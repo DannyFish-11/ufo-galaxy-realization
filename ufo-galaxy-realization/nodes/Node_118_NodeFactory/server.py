@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_115_NodeFactory - FastAPI Server
 节点工厂服务器

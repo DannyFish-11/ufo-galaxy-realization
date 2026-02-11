@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Unified multimodal parser for different message types.
 
 This module provides a unified interface to parse different message types

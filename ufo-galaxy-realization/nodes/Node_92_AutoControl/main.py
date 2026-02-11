@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 92: AutoControl - 统一自动操控接口
 

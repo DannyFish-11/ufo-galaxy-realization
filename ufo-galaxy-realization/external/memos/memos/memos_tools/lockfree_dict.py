@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Lock-free dictionary implementation using copy-on-write strategy.
 This provides better performance but uses more memory.

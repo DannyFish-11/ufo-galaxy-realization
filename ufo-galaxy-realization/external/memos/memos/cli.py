@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 MemOS CLI Tool
 This script provides command-line interface for MemOS operations.

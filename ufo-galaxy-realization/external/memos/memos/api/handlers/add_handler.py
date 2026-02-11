@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Add handler for memory addition functionality (Class-based version).
 

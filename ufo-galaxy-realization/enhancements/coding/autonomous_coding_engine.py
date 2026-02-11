@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 自主编程引擎 (Autonomous Coding Engine)
 L4 系统根据自身实际情况自主利用工具编写代码

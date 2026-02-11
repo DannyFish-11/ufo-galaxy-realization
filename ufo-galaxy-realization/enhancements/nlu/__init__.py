@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Natural Language Understanding Module for UFO Galaxy Realization.
 

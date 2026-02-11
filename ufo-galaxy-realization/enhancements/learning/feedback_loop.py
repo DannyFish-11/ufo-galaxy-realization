@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Feedback Loop Module for UFO Galaxy v5.0
 

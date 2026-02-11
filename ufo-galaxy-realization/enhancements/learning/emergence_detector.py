@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Emergence Detector for UFO Galaxy v5.0
 

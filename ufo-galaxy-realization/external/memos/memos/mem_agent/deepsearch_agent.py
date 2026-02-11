@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Deep Search Agent implementation for MemOS.
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 71 - MultiDeviceCoordination (多设备协调节点)
 提供多设备协同控制、任务分配和状态同步能力

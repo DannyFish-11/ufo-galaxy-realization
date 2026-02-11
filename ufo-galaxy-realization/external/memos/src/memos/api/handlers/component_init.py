@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Server component initialization module.
 

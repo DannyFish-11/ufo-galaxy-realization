@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 67: Intelligent Health Monitor & Self-Healer
 UFO Galaxy 64-Core MCP Matrix - Phase 6: Immune System

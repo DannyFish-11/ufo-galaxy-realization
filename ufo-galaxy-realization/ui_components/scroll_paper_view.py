@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 书法卷轴式 UI 组件 - ScrollPaperView
 实现书法卷轴的展开和收回动画

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy v5.0 - Device Protocol Module
 AIP v2.0 Protocol Implementation

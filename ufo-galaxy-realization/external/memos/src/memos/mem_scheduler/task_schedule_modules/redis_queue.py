@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Redis Queue implementation for SchedulerMessageItem objects.
 

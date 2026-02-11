@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 WebSocket 服务端传输层
 

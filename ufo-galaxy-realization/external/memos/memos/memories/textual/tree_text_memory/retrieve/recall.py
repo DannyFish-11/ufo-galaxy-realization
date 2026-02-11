@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import concurrent.futures
 
 from memos.context.context import ContextThreadPoolExecutor

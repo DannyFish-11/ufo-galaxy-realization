@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # memos/reranker/http_bge.py
 from __future__ import annotations
 

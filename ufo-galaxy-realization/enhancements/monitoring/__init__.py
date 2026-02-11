@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 监控模块 (Monitoring Module)
 负责实时状态监控和反馈收集

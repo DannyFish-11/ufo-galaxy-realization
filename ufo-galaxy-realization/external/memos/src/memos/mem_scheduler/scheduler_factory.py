@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import Any, ClassVar
 
 from memos.configs.mem_scheduler import SchedulerConfigFactory

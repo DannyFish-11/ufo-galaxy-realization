@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import Any
 
 from memos.configs.vec_db import MilvusVecDBConfig

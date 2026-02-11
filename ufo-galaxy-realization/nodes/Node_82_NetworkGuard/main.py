@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 82: Network Guard - 网络监控与防护
 实时监控网络状态、流量分析、安全防护

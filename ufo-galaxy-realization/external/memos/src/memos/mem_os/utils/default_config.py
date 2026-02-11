@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Default configuration utilities for MemOS.
 Provides simplified configuration generation for users.

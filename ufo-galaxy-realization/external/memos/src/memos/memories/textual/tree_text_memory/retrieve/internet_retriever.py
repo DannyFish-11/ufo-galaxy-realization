@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Internet retrieval module for tree text memory."""
 
 import uuid

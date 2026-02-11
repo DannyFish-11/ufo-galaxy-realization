@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Parser for user messages."""
 
 from typing import Any

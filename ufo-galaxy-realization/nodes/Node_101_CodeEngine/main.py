@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_101_CodeEngine - 代码理解和生成系统
 

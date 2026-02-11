@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 84: Stock Tracker - 股票追踪器
 实时行情、技术指标、市场分析

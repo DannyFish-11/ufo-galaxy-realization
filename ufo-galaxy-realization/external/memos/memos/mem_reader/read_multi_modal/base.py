@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Base parser interface for multi-model message parsing.
 
 This module defines the base interface for parsing different message types

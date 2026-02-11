@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 
 from memos.context.context import RequestContext, get_current_context

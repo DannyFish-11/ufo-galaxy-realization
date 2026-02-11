@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Configuration classes for internet retrievers."""
 
 from typing import Any, ClassVar

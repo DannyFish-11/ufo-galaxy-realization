@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # ruff: noqa: F403, F401
 
 from .chat_completion_assistant_message_param import *

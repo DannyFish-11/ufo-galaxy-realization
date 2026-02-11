@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 SIMPLE_COT_PROMPT = """You are an assistant that analyzes questions and returns results in a specific dictionary format.
 
 Instructions:

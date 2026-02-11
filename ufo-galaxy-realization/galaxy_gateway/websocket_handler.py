@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 WebSocket Handler - WebSocket 连接处理器
 

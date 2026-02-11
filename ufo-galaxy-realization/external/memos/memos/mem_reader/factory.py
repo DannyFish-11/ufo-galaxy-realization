@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import TYPE_CHECKING, Any, ClassVar, Optional
 
 from memos.configs.mem_reader import MemReaderConfigFactory

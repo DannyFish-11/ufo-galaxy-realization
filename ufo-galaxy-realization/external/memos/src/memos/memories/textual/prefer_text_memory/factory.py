@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import Any, ClassVar
 
 from memos.memories.textual.prefer_text_memory.adder import BaseAdder, NaiveAdder

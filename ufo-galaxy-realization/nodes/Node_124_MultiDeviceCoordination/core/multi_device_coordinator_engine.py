@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 71: Multi-Device Coordination Engine (MDCE)
 功能:

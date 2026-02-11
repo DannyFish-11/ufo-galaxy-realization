@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import time
 
 from concurrent.futures import as_completed

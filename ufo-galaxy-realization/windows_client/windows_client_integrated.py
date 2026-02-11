@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy Windows客户端 - UI与L4集成版
 极简主义设计风格，集成L4主循环

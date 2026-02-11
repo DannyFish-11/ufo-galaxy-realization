@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 109 - ProactiveSensing (主动感知节点)
 提供环境感知、事件检测和主动信息收集能力

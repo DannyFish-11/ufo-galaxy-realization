@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 """
 UFO Galaxy L4 级自主性智能系统启动脚本

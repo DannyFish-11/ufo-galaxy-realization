@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy Gateway v3.0 - 完整的网络通信和多模态传输系统
 

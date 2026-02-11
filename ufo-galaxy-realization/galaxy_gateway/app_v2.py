@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 FastAPI Application v2.0 - 改进版应用
 

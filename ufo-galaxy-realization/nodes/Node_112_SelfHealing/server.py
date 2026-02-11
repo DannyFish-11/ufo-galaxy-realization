@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_112_SelfHealing - FastAPI 服务器
 

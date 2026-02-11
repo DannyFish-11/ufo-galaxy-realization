@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 116 - ExternalToolWrapper (外部工具包装节点)
 提供外部工具和服务的统一封装和调用能力

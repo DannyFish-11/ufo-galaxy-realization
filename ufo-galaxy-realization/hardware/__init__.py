@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Hardware Module for UFO Galaxy
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Scheduler handler for scheduler management functionality.
 

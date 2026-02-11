@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Server API Router for MemOS (Class-based handlers version).
 

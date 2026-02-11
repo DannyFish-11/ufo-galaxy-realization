@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # DeepSeek API 配置 (Node 50)
 # 密钥由用户提供：sk-f5c7177f35ee6cceab5d97d6ffae26d0
 

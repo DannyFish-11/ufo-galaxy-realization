@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 54: Symbolic Math & Formal Verification
 UFO Galaxy 64-Core MCP Matrix - Phase 5: Scientific Brain

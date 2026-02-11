@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 MetaCognition Engine - 元认知引擎核心模块
 

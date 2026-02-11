@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 85: Prompt Library - 提示词库
 提示词管理、模板优化、最佳实践

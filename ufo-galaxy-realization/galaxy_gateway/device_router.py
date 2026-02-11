@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Device Router - 设备路由和任务分发模块
 

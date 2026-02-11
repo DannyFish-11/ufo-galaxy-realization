@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Physical Device NLU Module for UFO Galaxy Realization.
 

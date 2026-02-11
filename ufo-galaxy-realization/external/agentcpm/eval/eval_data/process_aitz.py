@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json, ast, sys, os
 from pathlib import Path
 from PIL import Image

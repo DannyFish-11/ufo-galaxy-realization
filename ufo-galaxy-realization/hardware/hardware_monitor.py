@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Hardware Monitor Module for UFO Galaxy
 

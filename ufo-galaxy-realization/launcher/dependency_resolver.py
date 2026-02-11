@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Dependency Resolver for UFO Galaxy Launcher
 

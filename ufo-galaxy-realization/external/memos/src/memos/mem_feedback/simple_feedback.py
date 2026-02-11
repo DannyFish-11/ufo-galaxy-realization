@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from memos import log
 from memos.embedders.factory import OllamaEmbedder
 from memos.graph_dbs.factory import PolarDBGraphDB

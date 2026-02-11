@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Memory handler for retrieving and managing memories.
 

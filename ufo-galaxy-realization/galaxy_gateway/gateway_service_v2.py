@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO³ Galaxy Gateway - 主服务 v2.0（集成增强 NLU）
 

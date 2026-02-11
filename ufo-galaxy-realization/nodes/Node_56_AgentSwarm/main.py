@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 56: Multi-Agent Debate System (Agent Swarm)
 UFO Galaxy 64-Core MCP Matrix - Phase 5: Scientific Brain

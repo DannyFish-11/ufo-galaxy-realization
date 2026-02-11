@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 49: OctoPrint 3D Printer Wrapper
 UFO Galaxy 64-Core MCP Matrix - DeepSeek Audited Architecture

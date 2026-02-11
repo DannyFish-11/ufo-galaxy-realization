@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Windows UI Automation 封装模块
 

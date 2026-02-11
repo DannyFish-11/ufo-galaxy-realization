@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_100_MemorySystem - 记忆和学习系统
 

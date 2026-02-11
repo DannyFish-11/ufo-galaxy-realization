@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Hardware Trigger Manager for UFO Galaxy
 System Integration Layer - Hardware Wake & State Switching

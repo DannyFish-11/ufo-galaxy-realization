@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # ruff: noqa: TC001, TC003
 
 from __future__ import annotations

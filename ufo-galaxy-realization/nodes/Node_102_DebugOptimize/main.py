@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_102_DebugOptimize - 自主调试和优化系统
 

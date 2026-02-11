@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from memos.configs.chunker import SentenceChunkerConfig
 from memos.dependency import require_python_package
 from memos.log import get_logger

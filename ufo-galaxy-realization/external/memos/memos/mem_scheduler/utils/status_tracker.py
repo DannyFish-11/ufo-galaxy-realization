@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # src/memos/mem_scheduler/utils/status_tracker.py
 import json
 

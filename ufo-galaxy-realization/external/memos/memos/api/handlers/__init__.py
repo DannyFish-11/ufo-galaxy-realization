@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Server handlers for MemOS API routers.
 

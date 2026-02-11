@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Type definitions and custom types for the MemOS library.
 
 This module defines commonly used type aliases, protocols, and custom types

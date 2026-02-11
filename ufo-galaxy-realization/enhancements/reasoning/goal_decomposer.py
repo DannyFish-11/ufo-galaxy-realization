@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 目标分解器 (Goal Decomposer)
 将高层次目标分解为可执行的子任务

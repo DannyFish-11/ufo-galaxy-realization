@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 58: Model Router (Cost/Logic)
 UFO Galaxy 64-Core MCP Matrix - DeepSeek Audited Architecture

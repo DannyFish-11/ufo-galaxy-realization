@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Integration Module for UFO Galaxy Realization.
 

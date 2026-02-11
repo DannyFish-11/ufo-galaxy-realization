@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os, subprocess, json
 from datetime import datetime
 from typing import Optional, List, Dict, Any

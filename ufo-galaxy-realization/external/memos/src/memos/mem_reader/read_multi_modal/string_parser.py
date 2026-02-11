@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Parser for string format messages.
 
 Handles simple string messages that need to be converted to memory items.

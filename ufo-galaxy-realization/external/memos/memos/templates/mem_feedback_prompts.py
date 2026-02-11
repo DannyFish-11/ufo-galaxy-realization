@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 KEYWORDS_REPLACE = """
 **Instruction:**
 Please analyze the user's input text to determine if it is a "keyword replacement" request. If yes, follow these steps:

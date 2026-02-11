@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 80: Memory System
 多层记忆系统 - 短期/长期/语义/用户画像

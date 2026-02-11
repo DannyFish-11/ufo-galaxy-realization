@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy WebSocket服务器
 处理Android客户端和Windows客户端的连接

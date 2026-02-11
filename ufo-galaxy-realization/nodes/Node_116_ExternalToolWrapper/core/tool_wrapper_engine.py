@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 External Tool Wrapper Engine - 通用工具包装引擎核心模块
 

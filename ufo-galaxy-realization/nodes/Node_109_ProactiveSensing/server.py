@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_109_ProactiveSensing - FastAPI Server
 主动感知节点服务器

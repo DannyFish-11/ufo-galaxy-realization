@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Search handler for memory search functionality (Class-based version).
 

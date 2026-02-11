@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 环境扫描器 (Environment Scanner)
 自动发现系统中可用的工具、编程语言、IDE、设备等资源

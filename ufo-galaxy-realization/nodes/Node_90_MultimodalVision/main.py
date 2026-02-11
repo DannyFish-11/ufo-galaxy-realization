@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 90: MultimodalVision - 多模态视觉理解
 

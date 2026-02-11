@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 执行模块 (Execution Module)
 负责执行自主规划器生成的动作计划

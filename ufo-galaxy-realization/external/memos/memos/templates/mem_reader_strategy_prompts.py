@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 STRATEGY_STRUCT_MEM_READER_PROMPT = """You are a memory extraction expert.
 Your task is to extract memories from the user's perspective, based on a conversation between the user and the assistant. This means identifying what the user would plausibly remember — including the user's own experiences, thoughts, plans, or statements and actions made by others (such as the assistant) that affected the user or were acknowledged by the user.
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Feeback handler for memory add/update functionality.
 """

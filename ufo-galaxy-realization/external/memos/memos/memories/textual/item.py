@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Defines memory item types for textual memory."""
 
 import json

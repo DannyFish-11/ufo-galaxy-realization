@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Windows 输入模拟模块
 

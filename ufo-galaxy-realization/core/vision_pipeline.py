@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy - 融合视觉理解管线 (Vision Pipeline)
 

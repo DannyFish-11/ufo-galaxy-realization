@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 53: GraphLogic - 图论和逻辑推理
 """

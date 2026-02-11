@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from ollama import Client
 
 from memos.configs.embedder import OllamaEmbedderConfig

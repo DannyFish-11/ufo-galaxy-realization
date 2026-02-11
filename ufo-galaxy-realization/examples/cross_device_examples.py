@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy Cross-Device Collaboration Examples
 跨设备协同示例

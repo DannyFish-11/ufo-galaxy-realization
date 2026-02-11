@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy v5.0 - Android Bridge Module
 Android Device Integration System

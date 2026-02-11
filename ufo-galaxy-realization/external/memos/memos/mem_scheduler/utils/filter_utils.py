@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 
 from memos.dependency import require_python_package

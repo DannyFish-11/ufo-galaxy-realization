@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 This utility provides tools for managing dependencies in MemOS.
 """

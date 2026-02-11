@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Cross-Device Coordinator - 跨设备协同协调器
 

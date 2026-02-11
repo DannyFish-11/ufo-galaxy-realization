@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 110 - SmartOrchestrator (智能编排节点)
 提供任务编排、工作流管理和智能调度能力

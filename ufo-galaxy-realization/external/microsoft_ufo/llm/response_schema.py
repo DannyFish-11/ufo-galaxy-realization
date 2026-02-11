@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from typing import List, Literal
 from pydantic import BaseModel, Field, ConfigDict
 

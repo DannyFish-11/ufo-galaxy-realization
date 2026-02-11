@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 52: Qiskit Quantum Simulator
 UFO Galaxy 64-Core MCP Matrix - Phase 5: Scientific Brain

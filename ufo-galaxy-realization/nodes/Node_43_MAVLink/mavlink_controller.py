@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 MAVLink 无人机控制器
 支持真实的 MAVLink 协议通信和模拟模式

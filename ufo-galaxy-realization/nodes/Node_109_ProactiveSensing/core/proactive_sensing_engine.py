@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Proactive Sensing Engine - 主动感知引擎核心模块
 

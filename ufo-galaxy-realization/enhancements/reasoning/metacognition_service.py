@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 元认知服务 (MetaCognition Service)
 系统的自我反思和自我改进能力

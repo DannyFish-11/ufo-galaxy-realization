@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 112 - SelfHealing (自愈节点)
 提供系统自动故障检测、诊断和恢复能力

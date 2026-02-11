@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Request context middleware for automatic trace_id injection.
 """

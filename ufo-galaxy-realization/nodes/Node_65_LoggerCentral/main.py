@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 65: Centralized Audit & Forensic Logger
 UFO Galaxy 64-Core MCP Matrix - Phase 6: Immune System

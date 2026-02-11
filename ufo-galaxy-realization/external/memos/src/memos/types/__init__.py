@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from .general_types import (
     FINE_STRATEGY,
     ChatHistory,

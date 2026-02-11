@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 自动 GitHub 代码更新器 (Auto Git Updater)
 L4 系统能及时从 GitHub 上自动拉取和更新代码

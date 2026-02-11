@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 83: News Aggregator - 新闻聚合器
 实时新闻、RSS 订阅、内容聚合

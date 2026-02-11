@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 69: Backup & Disaster Recovery System
 UFO Galaxy 64-Core MCP Matrix - Phase 6: Immune System

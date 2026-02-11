@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from memos.configs.mem_scheduler import BaseSchedulerConfig
 from memos.llms.base import BaseLLM
 from memos.log import get_logger

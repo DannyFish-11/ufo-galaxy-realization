@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 12: File Operations
 UFO Galaxy 64-Core MCP Matrix - Core Tool Node

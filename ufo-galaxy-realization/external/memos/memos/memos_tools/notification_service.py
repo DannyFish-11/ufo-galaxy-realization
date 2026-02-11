@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Simple online_bot integration utility.
 """

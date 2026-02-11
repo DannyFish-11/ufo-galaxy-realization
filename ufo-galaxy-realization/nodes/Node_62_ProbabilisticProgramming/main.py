@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 62: ProbabilisticProgramming - 概率编程
 """

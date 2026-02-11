@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Evaluation Analyzer for Bad Cases
 

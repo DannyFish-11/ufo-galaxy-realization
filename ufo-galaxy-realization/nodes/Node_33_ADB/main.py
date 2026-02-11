@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 33: Android ADB Wrapper
 UFO Galaxy 64-Core MCP Matrix - DeepSeek Audited Architecture

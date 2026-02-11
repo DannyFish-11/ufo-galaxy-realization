@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 from ufo.agents.processors.context.processing_context import BasicProcessorContext

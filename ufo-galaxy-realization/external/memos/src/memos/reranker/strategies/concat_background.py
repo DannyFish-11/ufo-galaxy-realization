@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # memos/reranker/strategies/single_turn.py
 from __future__ import annotations
 

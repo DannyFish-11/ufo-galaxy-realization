@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 SmartTransportRouter - 智能传输路由
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 学习优化器 (Learning Optimizer)
 负责从执行结果中学习并优化系统性能

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 WebSocket Handler v2 - 协议兼容版
 支持 AIP v1.0 和 AIP v2.0 (Android Agent) 的颗粒级对接

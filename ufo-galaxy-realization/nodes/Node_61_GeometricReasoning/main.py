@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 61: GeometricReasoning - 几何推理
 """

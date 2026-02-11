@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 70 - AutonomousLearning (自主学习节点)
 提供系统自主学习、经验积累和知识更新能力

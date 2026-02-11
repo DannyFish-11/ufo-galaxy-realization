@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 00: Global State Machine
 UFO Galaxy 64-Core MCP Matrix - DeepSeek Audited Architecture

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Prompt for task parsing
 TASK_PARSE_PROMPT = """
 You are a task parsing expert. Given a user task instruction, optional former conversation and optional related memory context,extract the following structured information:

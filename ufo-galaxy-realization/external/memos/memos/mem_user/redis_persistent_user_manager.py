@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Redis-based persistent user management system for MemOS with configuration storage.
 
 This module provides persistent storage for user configurations using Redis.

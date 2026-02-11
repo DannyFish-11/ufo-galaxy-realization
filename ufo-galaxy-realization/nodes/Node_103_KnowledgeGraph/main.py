@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_103_KnowledgeGraph - 知识图谱和推理引擎
 

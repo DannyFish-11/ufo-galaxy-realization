@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Factory for creating internet retrievers."""
 
 from typing import Any, ClassVar

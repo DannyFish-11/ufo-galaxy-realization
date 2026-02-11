@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 UFO Galaxy 状态机与UI集成模块
 实现硬件触发 → UI 和 UI状态 → 硬件触发 的双向集成

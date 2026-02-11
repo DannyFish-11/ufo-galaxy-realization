@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 57: QuantumCloud - 量子云计算接口
 """

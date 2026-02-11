@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #!/usr/bin/env python3
 """
 Knowledge Graph Module for UFO Galaxy v5.0

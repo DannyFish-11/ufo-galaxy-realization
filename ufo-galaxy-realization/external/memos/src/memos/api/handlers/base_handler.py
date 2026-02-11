@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Base handler for MemOS API handlers.
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class SimpleTextSplitter:
     """Simple text splitter wrapper."""
 

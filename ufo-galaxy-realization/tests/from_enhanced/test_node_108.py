@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_108_MetaCognition 测试文件
 """

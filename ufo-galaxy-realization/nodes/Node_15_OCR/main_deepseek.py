@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 15: DeepSeek-OCR2 增强版视觉节点
 集成 DeepSeek 最新的 OCR2 能力，为安卓集群提供高精度 UI 识别。

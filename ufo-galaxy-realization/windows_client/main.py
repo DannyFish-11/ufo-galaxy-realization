@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Windows Client 主程序
 

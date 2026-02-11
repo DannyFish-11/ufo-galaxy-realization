@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 This module provides utilities for marking functions, classes, and parameters
 as deprecated. It includes decorators for deprecation, a function to issue

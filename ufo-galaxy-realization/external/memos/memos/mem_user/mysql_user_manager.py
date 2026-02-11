@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """User management system for MemOS.
 
 This module provides user authentication, authorization, and cube management

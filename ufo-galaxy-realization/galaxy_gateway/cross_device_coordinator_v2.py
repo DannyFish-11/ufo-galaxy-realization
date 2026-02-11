@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Cross-Device Coordinator v2.0 - 改进版跨设备协同协调器
 

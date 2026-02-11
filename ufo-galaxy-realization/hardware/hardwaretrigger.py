@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Hardware Trigger Module for UFO Galaxy
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 04: Qwen-Think-Max 驱动的智能路由引擎
 利用 Qwen 的深度思考能力进行任务分解和最优路径规划。

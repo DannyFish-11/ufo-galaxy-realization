@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 from typing import Any, Dict, List, Union
 from ufo.agents.agent.app_agent import AppAgent

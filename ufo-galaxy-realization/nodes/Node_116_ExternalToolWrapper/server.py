@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node_113_ExternalToolWrapper - FastAPI Server
 通用工具包装器节点服务器

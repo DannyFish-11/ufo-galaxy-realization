@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Bambu Lab 3D打印机控制器 - Node 43 - 修复版
 支持Bambu Lab打印机控制

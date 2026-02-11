@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Node 64: Predictive Telemetry & Anomaly Detection
 UFO Galaxy 64-Core MCP Matrix - Phase 6: Immune System

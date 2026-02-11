@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Thread-safe dictionary wrapper for concurrent access with optimized read-write locks.
 """

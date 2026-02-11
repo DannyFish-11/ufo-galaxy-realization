@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 安全管理器 (Safety Manager)
 负责错误处理、故障恢复和安全检查

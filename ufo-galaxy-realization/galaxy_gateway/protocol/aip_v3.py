@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 AIP v3.0 - Agent Interaction Protocol (统一版本)
 

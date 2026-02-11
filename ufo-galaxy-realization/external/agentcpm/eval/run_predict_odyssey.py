@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Inference code is modified from the origin repo: https://github.com/OpenGVLab/GUI-Odyssey
 See the origin code at:

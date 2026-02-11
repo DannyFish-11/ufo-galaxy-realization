@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # memos/reranker/factory.py
 from __future__ import annotations
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """BochaAI Search API retriever for tree text memory."""
 
 import json

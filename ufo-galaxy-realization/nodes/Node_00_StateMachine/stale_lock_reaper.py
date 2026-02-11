@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Stale Lock Reaper for Node 00: State Machine
 过期锁清理器 - 防止系统死锁

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """Multimodal message parsers for different message types.
 
 This package provides parsers for different message types in both fast and fine modes:

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 PixVerse API 适配器 (Node 71)
 负责调用 PixVerse.ai API 生成视频和图片，并自动下载结果

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import logging
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
