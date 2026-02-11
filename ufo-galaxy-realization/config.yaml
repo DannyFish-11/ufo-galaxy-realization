@@ -1,0 +1,298 @@
+# UFO Galaxy 系统配置文件
+# ============================
+# 此文件包含 UFO Galaxy 系统的全局配置
+# 修改此文件后需要重启系统
+
+# 系统基本配置
+system:
+  name: "UFO Galaxy"
+  version: "1.0.0"
+  description: "L4 级自主性智能系统"
+  author: "UFO Galaxy Team"
+  
+  # 系统模式
+  mode: "production"  # development, staging, production
+  
+  # 日志配置
+  logging:
+    level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+    format: "%(asctime)s | %(levelname)s | %(message)s"
+    file: "logs/system.log"
+    max_size: "100MB"
+    backup_count: 10
+
+# 节点配置
+nodes:
+  # 节点加载配置
+  loading:
+    # 是否并行加载节点
+    parallel: true
+    # 最大并行数
+    max_workers: 4
+    # 加载超时时间（秒）
+    timeout: 30
+    # 是否验证节点配置
+    validate: true
+  
+  # 节点启动配置
+  startup:
+    # 启动模式：all, core, minimal
+    mode: "all"
+    # 启动顺序：按配置顺序或按优先级
+    order: "priority"
+    # 启动超时时间（秒）
+    timeout: 60
+    # 启动失败是否继续
+    continue_on_error: false
+  
+  # 节点监控配置
+  monitoring:
+    # 是否启用监控
+    enabled: true
+    # 监控间隔（秒）
+    interval: 30
+    # 健康检查间隔（秒）
+    health_check_interval: 60
+    # 自动重启失败的节点
+    auto_restart: true
+    # 最大重启次数
+    max_restarts: 3
+
+# Web UI 配置
+ui:
+  # 是否启用 Web UI
+  enabled: true
+  # 监听地址
+  host: "0.0.0.0"
+  # 监听端口
+  port: 8080
+  # 是否启用 HTTPS
+  ssl: false
+  # SSL 证书路径
+  ssl_cert: null
+  # SSL 密钥路径
+  ssl_key: null
+  # CORS 配置
+  cors:
+    enabled: true
+    origins: ["*"]
+  # 静态文件路径
+  static_path: "ui/static"
+  # 模板路径
+  template_path: "ui/templates"
+
+# API 配置
+api:
+  # API 版本
+  version: "v1"
+  # API 前缀
+  prefix: "/api"
+  # 是否启用 API 文档
+  docs_enabled: true
+  # API 文档路径
+  docs_path: "/api/docs"
+  # 请求超时时间（秒）
+  request_timeout: 30
+  # 最大请求体大小（MB）
+  max_request_size: 10
+  # 速率限制
+  rate_limit:
+    enabled: true
+    requests_per_minute: 100
+
+# 数据库配置
+database:
+  # 数据库类型：sqlite, mysql, postgresql
+  type: "sqlite"
+  # 数据库文件路径（仅 sqlite）
+  path: "data/galaxy.db"
+  # 主机（mysql/postgresql）
+  host: "localhost"
+  # 端口（mysql/postgresql）
+  port: 5432
+  # 用户名（mysql/postgresql）
+  username: "root"
+  # 密码（mysql/postgresql）
+  password: ""
+  # 数据库名（mysql/postgresql）
+  database: "ufo_galaxy"
+  # 连接池大小
+  pool_size: 10
+  # 最大溢出连接数
+  max_overflow: 20
+
+# 缓存配置
+cache:
+  # 缓存类型：memory, redis
+  type: "memory"
+  # Redis 主机（仅 redis）
+  redis_host: "localhost"
+  # Redis 端口（仅 redis）
+  redis_port: 6379
+  # Redis 数据库（仅 redis）
+  redis_db: 0
+  # 缓存过期时间（秒）
+  ttl: 3600
+  # 最大缓存条目数
+  max_entries: 10000
+
+# 消息队列配置
+message_queue:
+  # 消息队列类型：memory, redis, rabbitmq
+  type: "memory"
+  # Redis 主机（仅 redis）
+  redis_host: "localhost"
+  # Redis 端口（仅 redis）
+  redis_port: 6379
+  # RabbitMQ 主机（仅 rabbitmq）
+  rabbitmq_host: "localhost"
+  # RabbitMQ 端口（仅 rabbitmq）
+  rabbitmq_port: 5672
+  # 消息队列名称
+  queue_name: "ufo_galaxy"
+
+# 存储配置
+storage:
+  # 存储类型：local, s3, gcs
+  type: "local"
+  # 本地存储路径
+  local_path: "data/storage"
+  # S3 配置
+  s3:
+    bucket: "ufo-galaxy"
+    region: "us-east-1"
+    access_key: ""
+    secret_key: ""
+  # GCS 配置
+  gcs:
+    bucket: "ufo-galaxy"
+    project_id: ""
+    credentials_file: ""
+
+# 安全配置
+security:
+  # JWT 密钥
+  jwt_secret: "${JWT_SECRET}"
+  # JWT 过期时间（秒）
+  jwt_expiry: 86400
+  # 密码哈希算法
+  password_hash_algorithm: "bcrypt"
+  # 密码最小长度
+  password_min_length: 8
+  # 启用 HTTPS 重定向
+  https_redirect: false
+  # 启用 HSTS
+  hsts_enabled: false
+  # HSTS 最大年龄
+  hsts_max_age: 31536000
+
+# 外部服务配置
+external_services:
+  # OpenAI API
+  openai:
+    enabled: true
+    api_key: "${OPENAI_API_KEY}"
+    api_url: "https://api.openai.com/v1"
+    timeout: 30
+  
+  # Google Gemini API
+  gemini:
+    enabled: true
+    api_key: "${GEMINI_API_KEY}"
+    api_url: "https://generativelanguage.googleapis.com"
+    timeout: 30
+  
+  # OpenRouter API
+  openrouter:
+    enabled: true
+    api_key: "${OPENROUTER_API_KEY}"
+    api_url: "https://openrouter.ai/api/v1"
+    timeout: 30
+  
+  # xAI Grok API
+  xai:
+    enabled: true
+    api_key: "${XAI_API_KEY}"
+    api_url: "https://api.x.ai/v1"
+    timeout: 30
+  
+  # GitHub API
+  github:
+    enabled: true
+    token: "${GITHUB_TOKEN}"
+    api_url: "https://api.github.com"
+    timeout: 30
+  
+  # OpenWeather API
+  openweather:
+    enabled: true
+    api_key: "${OPENWEATHERMAP_API_KEY}"
+    api_url: "https://api.openweathermap.org"
+    timeout: 30
+  
+  # Brave Search API
+  brave:
+    enabled: true
+    api_key: "${BRAVE_API_KEY}"
+    api_url: "https://api.search.brave.com"
+    timeout: 30
+
+# 开发配置
+development:
+  # 是否启用调试模式
+  debug: false
+  # 是否启用热重载
+  hot_reload: true
+  # 是否启用模拟数据
+  mock_data: false
+  # 是否启用性能分析
+  profiling: false
+  # 是否启用代码覆盖率
+  coverage: false
+
+# 监控和告警配置
+monitoring:
+  # 是否启用监控
+  enabled: true
+  # 监控间隔（秒）
+  interval: 60
+  # 告警配置
+  alerts:
+    # 是否启用告警
+    enabled: true
+    # CPU 使用率告警阈值（%）
+    cpu_threshold: 80
+    # 内存使用率告警阈值（%）
+    memory_threshold: 80
+    # 磁盘使用率告警阈值（%）
+    disk_threshold: 90
+    # 节点离线告警
+    node_offline_alert: true
+    # 告警通知方式：email, slack, webhook
+    notification_methods:
+      - "email"
+      - "slack"
+
+# 备份配置
+backup:
+  # 是否启用备份
+  enabled: true
+  # 备份间隔（小时）
+  interval: 24
+  # 备份路径
+  path: "data/backups"
+  # 保留备份数
+  retention_count: 7
+  # 是否压缩备份
+  compress: true
+
+# 更新配置
+updates:
+  # 是否启用自动更新
+  enabled: true
+  # 检查更新间隔（小时）
+  check_interval: 24
+  # 更新源
+  source: "https://github.com/DannyFish-11/ufo-galaxy-realization/releases"
+  # 是否自动安装更新
+  auto_install: false
