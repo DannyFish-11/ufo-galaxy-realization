@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 UFO³ Galaxy - 智能节点启动器 (已弃用)
 =====================================
@@ -23,7 +24,6 @@ from pathlib import Path
 # 添加项目根目录到路径
 PROJECT_ROOT = Path(__file__).parent.absolute()
 sys.path.insert(0, str(PROJECT_ROOT))
-
 
 def main():
     """主函数 - 重定向到统一启动器"""
