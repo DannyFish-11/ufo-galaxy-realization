@@ -1,5 +1,6 @@
+#!/usr/bin/env python3
 """
-UFO Galaxy - L4 主循环 (已弃用)
+UFO³ Galaxy 智能启动器 (已弃用)
 ================================
 
 ⚠️  DEPRECATION WARNING - 弃用警告
@@ -14,10 +15,10 @@ UFO Galaxy - L4 主循环 (已弃用)
     start.bat (Windows)
 
 此 wrapper 将调用统一启动器以保持向后兼容。
-原始功能已整合到 unified_launcher.py 中。
 """
 
 import sys
+import warnings
 from pathlib import Path
 
 # 添加项目根目录到路径
@@ -31,7 +32,7 @@ def main():
     print("\n" + "=" * 70)
     print("⚠️  DEPRECATION WARNING - 弃用警告")
     print("=" * 70)
-    print("galaxy_main_loop_l4.py 已被弃用，请使用统一启动入口。")
+    print("galaxy_launcher.py 已被弃用，请使用统一启动入口。")
     print("\n推荐使用:")
     print("  python unified_launcher.py")
     print("\n或使用启动脚本:")
