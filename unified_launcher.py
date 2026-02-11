@@ -1067,6 +1067,19 @@ class UFOGalaxyUnified:
         self.web_ui = UnifiedWebUI(self.service_manager, self.config)
         self.running = False
         
+        # ===== 集成：初始化能力管理器和连接管理器 =====
+        try:
+            from core.capability_manager import get_capability_manager
+            from core.connection_manager import get_connection_manager
+            
+            self.capability_manager = get_capability_manager()
+            self.connection_manager = get_connection_manager()
+            logger.info("能力管理器和连接管理器已初始化")
+        except Exception as e:
+            logger.warning(f"能力管理器初始化失败 (非致命): {e}")
+            self.capability_manager = None
+            self.connection_manager = None
+        
     async def start(self):
         """启动系统"""
         print_banner()
@@ -1083,6 +1096,15 @@ class UFOGalaxyUnified:
         status = self.config.get_status_dict()
         llm_count = sum(1 for v in status["llm_apis"].values() if v)
         print_status(f"已配置 {llm_count} 个 LLM API", "info")
+        
+        # ===== 集成：报告能力和连接管理器状态 =====
+        if self.capability_manager:
+            cap_stats = self.capability_manager.get_stats()
+            print_status(f"能力管理器: {cap_stats['total_capabilities']} 个能力已加载", "info")
+        
+        if self.connection_manager:
+            conn_stats = self.connection_manager.get_stats()
+            print_status(f"连接管理器: {conn_stats['total_connections']} 个连接已注册", "info")
         
         # 2. 并行启动服务
         print_section("服务启动")
