@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 UFO Galaxy - L4 主循环 (已弃用)
 ================================
@@ -24,7 +25,6 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).parent.absolute()
 sys.path.insert(0, str(PROJECT_ROOT))
 
-
 def main():
     """主函数 - 重定向到统一启动器"""
     # 打印弃用警告
@@ -48,7 +48,6 @@ def main():
         print(f"错误: 无法导入统一启动器: {e}")
         print("请确保 unified_launcher.py 文件存在。")
         sys.exit(1)
-
 
 if __name__ == "__main__":
     main()
