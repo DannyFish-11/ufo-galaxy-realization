@@ -1,5 +1,26 @@
 # UFO Galaxy - 快速上手指南
 
+## 🎯 系统概览 (Round 2 - R-4)
+
+UFO Galaxy 是一个 **L4 级自主性智能系统**，集成了：
+
+- ✨ **能力注册与发现** (OpenClaw 风格) - 统一能力索引和调度
+- 🔗 **稳定连接管理** (向日葵风格) - 心跳保活、自动重连
+- 🏗️ **完整系统群型架构** - 贯穿启动→注册→通信→监控的闭环
+
+### 核心流程
+
+```mermaid
+graph LR
+    A[配置加载] --> B[能力注册]
+    B --> C[节点启动]
+    C --> D[连接初始化]
+    D --> E[健康监控]
+    E --> B
+```
+
+---
+
 ## 🚀 一键启动
 
 ### 方式 1: Docker Compose (推荐)
@@ -196,6 +217,71 @@ export UFO_SSL_KEY=/path/to/key.pem
 - [API 参考](docs/API.md)
 - [节点开发指南](docs/NODE_DEVELOPMENT.md)
 - [部署指南](docs/DEPLOYMENT.md)
+- [能力注册系统](docs/CAPABILITY_SYSTEM.md)
+
+## 🔧 能力注册与连接管理 (New in R-4)
+
+### 验证系统状态
+
+```bash
+# 验证能力注册系统
+python scripts/verify_capability_registry.py
+
+# 运行集成测试
+python tests/test_capability_integration.py
+```
+
+### 能力查询
+
+系统启动后，能力信息保存在 `config/capabilities.json`：
+
+```json
+{
+  "version": "1.0.0",
+  "capabilities": [
+    {
+      "name": "http_get",
+      "description": "HTTP GET 请求",
+      "node_id": "08",
+      "node_name": "Fetch",
+      "category": "http",
+      "status": "online"
+    }
+  ]
+}
+```
+
+### 连接状态
+
+连接信息保存在 `config/connection_state.json`：
+
+```json
+{
+  "timestamp": "2026-02-11T08:00:00",
+  "connections": [
+    {
+      "connection_id": "node_08",
+      "url": "http://localhost:8008",
+      "state": "connected",
+      "last_heartbeat": "2026-02-11T08:00:30"
+    }
+  ]
+}
+```
+
+### 健康监控集成
+
+健康监控现在包括能力和连接状态：
+
+```bash
+# 查看完整系统状态
+python system_manager.py status
+```
+
+输出包括：
+- 节点健康状态
+- 能力在线/离线统计
+- 连接状态和重连次数
 
 ## 💬 获取帮助
 
