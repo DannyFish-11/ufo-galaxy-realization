@@ -10,8 +10,31 @@
 3. 节点间通信协调
 4. 动态节点加载
 
+## 能力注册机制（Capability Registration）
+
+本模块为后续集成 OpenClaw 风格的工具注册和向日葵式连接管理预留接口：
+
+### OpenClaw 风格能力注册
+- 可插拔的工具注册机制
+- 统一的能力描述格式（Capability Schema）
+- 动态工具发现和加载
+- 能力组合和编排
+
+### 向日葵式连接管理
+- 稳定的连接池管理
+- 自动重连机制
+- 连接健康监控
+- 负载均衡支持
+
+### 预留接口
+1. `register_capability(capability: NodeCapability)` - 注册新能力
+2. `discover_capabilities(filter: Dict)` - 发现可用能力
+3. `connect_with_retry(node_id: str, max_retries: int)` - 带重试的连接
+4. `monitor_connection_health(node_id: str)` - 连接健康监控
+
 作者：Manus AI
 日期：2026-02-06
+更新：2026-02-11 (R-3 Round 1: 预留能力注册接口)
 """
 
 import os

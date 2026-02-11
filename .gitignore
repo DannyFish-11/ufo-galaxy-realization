@@ -75,3 +75,6 @@ htmlcov/
 *.tmp
 *.temp
 .cache/
+
+# Backup files
+*.bak

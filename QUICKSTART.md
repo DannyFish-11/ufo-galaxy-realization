@@ -1,8 +1,35 @@
 # UFO Galaxy - 快速上手指南
 
-## 🚀 一键启动
+## 🚀 快速启动
 
-### 方式 1: Docker Compose (推荐)
+### 方式 1: 统一启动器（推荐）
+
+```bash
+# 1. 克隆仓库
+git clone https://github.com/DannyFish-11/ufo-galaxy-realization.git
+cd ufo-galaxy-realization
+
+# 2. 安装依赖
+pip install -r requirements.txt
+
+# 3. 启动系统
+python unified_launcher.py
+
+# 或使用启动脚本
+./start.sh           # Linux/Mac
+start.bat            # Windows
+```
+
+**启动选项：**
+```bash
+python unified_launcher.py              # 默认启动（完整模式）
+python unified_launcher.py --minimal    # 最小启动
+python unified_launcher.py --no-l4      # 不启动 L4 模块
+python unified_launcher.py --no-ui      # 不启动 Web UI
+python unified_launcher.py --status     # 查看系统状态
+```
+
+### 方式 2: Docker Compose
 
 ```bash
 # 1. 克隆仓库
@@ -16,30 +43,27 @@ docker-compose up -d
 docker-compose ps
 ```
 
-### 方式 2: 本地安装
+## ⚠️  启动方式说明
 
-```bash
-# 1. 克隆仓库
-git clone https://github.com/DannyFish-11/ufo-galaxy-realization.git
-cd ufo-galaxy-realization
+从 v2.0 开始，所有启动入口已统一：
 
-# 2. 安装依赖
-pip install -r requirements.txt
+- ✅ **推荐**: `python unified_launcher.py` 或启动脚本
+- ⚠️  **已弃用**: `main.py`, `galaxy_launcher.py`, `smart_launcher.py` 等（已改为重定向 wrapper）
 
-# 3. 启动系统
-python -m launcher start --groups core
-
-# 4. 查看状态
-python -m launcher status
-```
+旧的启动文件仍然可用，但会显示弃用警告并自动重定向到统一启动器。
 
 ## 📱 手机跨设备联通
+
+**Android 主仓库**: [DannyFish-11/ufo-galaxy-android](https://github.com/DannyFish-11/ufo-galaxy-android)
+
+> **注意**: 本仓库中的 `android_client/` 目录包含旧版/示例代码，仅供参考。  
+> 推荐使用独立的 Android 仓库进行开发和部署。
 
 ### Android App 配置
 
 1. **下载 APK**
    ```bash
-   # 从 GitHub Releases 下载
+   # 从独立 Android 仓库的 GitHub Releases 下载
    wget https://github.com/DannyFish-11/ufo-galaxy-android/releases/latest/download/app-release.apk
    ```
 

@@ -1,6 +1,65 @@
-# UFO Galaxy 节点实现
+# UFO Galaxy - L4 级自主性智能系统
 
-本目录包含UFO Galaxy系统的P0级优先节点实现。
+UFO Galaxy 是一个 L4 级自主性智能系统，具备物理设备控制、Android 集成和系统级 AI 交互层。本系统整合了 108+ 节点，支持跨设备协同、自主决策和智能推理。
+
+## 🚀 快速启动
+
+### 方式 1: 使用统一启动器（推荐）
+
+```bash
+# 1. 克隆仓库
+git clone https://github.com/DannyFish-11/ufo-galaxy-realization.git
+cd ufo-galaxy-realization
+
+# 2. 安装依赖
+pip install -r requirements.txt
+
+# 3. 启动系统（使用统一启动器）
+python unified_launcher.py
+
+# 或使用启动脚本
+./start.sh           # Linux/Mac
+start.bat            # Windows
+```
+
+### 方式 2: Docker Compose
+
+```bash
+docker-compose up -d
+```
+
+## 📖 启动说明
+
+**重要提示：** 从 v2.0 开始，所有启动入口已统一到 `unified_launcher.py`。
+
+- ✅ **推荐使用**: `python unified_launcher.py` 或启动脚本 `./start.sh` / `start.bat`
+- ⚠️  **已弃用**: `main.py`, `galaxy_launcher.py`, `smart_launcher.py`, `galaxy_main_loop*.py`, `start_l4.py` 等文件已改为 thin-wrapper，会自动重定向到统一启动器。
+
+### 启动选项
+
+```bash
+python unified_launcher.py              # 默认启动（完整模式）
+python unified_launcher.py --minimal    # 最小启动
+python unified_launcher.py --no-l4      # 不启动 L4 模块
+python unified_launcher.py --no-ui      # 不启动 Web UI
+python unified_launcher.py --status     # 查看系统状态
+python unified_launcher.py --port 8080  # 指定 Web UI 端口
+```
+
+## 📱 Android 客户端
+
+**Android 独立仓库**: [DannyFish-11/ufo-galaxy-android](https://github.com/DannyFish-11/ufo-galaxy-android)
+
+本仓库中的 `android_client/` 目录包含旧版/示例代码，主要用于参考。推荐使用独立的 Android 仓库进行开发和部署。
+
+## 🔧 系统架构
+
+本系统包含以下核心组件：
+
+1. **核心服务层** - Device Agent、设备状态管理、UFO 集成
+2. **节点系统** - 108+ 功能节点（详见下方节点列表）
+3. **L4 增强模块** - 感知、推理、学习、执行
+4. **Web UI 和 API 服务** - 管理界面和 RESTful API
 
 ## 已实现的节点列表
 

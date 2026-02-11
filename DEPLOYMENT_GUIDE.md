@@ -61,34 +61,51 @@ UFO Galaxy 是一个 L4 级自主AI系统，具备物理设备控制、Android �
 git clone https://github.com/DannyFish-11/ufo-galaxy-realization.git
 cd ufo-galaxy-realization
 
-# Android 端
+# Android 端（独立仓库）
 git clone https://github.com/DannyFish-11/ufo-galaxy-android.git
 ```
+
+> **注意**: Android 客户端现已迁移到独立仓库 `ufo-galaxy-android`。  
+> 本仓库中的 `android_client/` 目录包含旧版/示例代码，仅供参考。
 
 ### 4.2. 运行配置向导
 
 我们强烈建议使用交互式配置向导来完成初始设置。它会自动检测环境、验证密钥并生成配置文件。
 
 ```bash
-python main.py --setup
+python setup_wizard.py
 ```
 
-向导将引导您完成所有必要步骤。如果您跳过向导，则需要手动创建和编辑 `config/unified_config.json` 文件。
+向导将引导您完成所有必要步骤。如果您跳过向导，则需要手动创建和编辑 `.env` 文件。
 
 ## 5. 启动系统
 
-配置完成后，您可以使用一键启动脚本来运行整个系统。脚本会自动安装所需的 Python 依赖项，并按正确的顺序启动所有 113 个节点。
+配置完成后，您可以使用统一启动器来运行整个系统。
 
-- **在 Windows 上:**
-  ```batch
-  start.bat
-  ```
+### 5.1. 使用统一启动器（推荐）
 
-- **在 Linux 或 macOS 上:**
-  ```bash
-  chmod +x start.sh
-  ./start.sh
-  ```
+```bash
+# 使用启动脚本（推荐）
+./start.sh          # Linux/Mac
+start.bat           # Windows
+
+# 或直接使用 Python
+python unified_launcher.py
+```
+
+**启动选项：**
+```bash
+python unified_launcher.py              # 默认启动（完整模式）
+python unified_launcher.py --minimal    # 最小启动
+python unified_launcher.py --no-l4      # 不启动 L4 模块
+python unified_launcher.py --no-ui      # 不启动 Web UI
+python unified_launcher.py --status     # 查看系统状态
+```
+
+### 5.2. 使用 Docker（可选）
+
+```bash
+docker-compose up -d
 
 系统启动后，您可以通过浏览器访问 `http://localhost:8000` 查看状态监控和 Web UI。
 
