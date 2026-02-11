@@ -50,6 +50,18 @@ class HealthMonitor:
         self.health_history: Dict[str, List[Dict]] = {}
         self.alert_count: Dict[str, int] = {}
         
+        # ===== 集成：初始化能力和连接管理器 =====
+        try:
+            from core.capability_manager import get_capability_manager
+            from core.connection_manager import get_connection_manager
+            
+            self.capability_manager = get_capability_manager()
+            self.connection_manager = get_connection_manager()
+        except Exception as e:
+            print(f"⚠️  能力/连接管理器初始化失败: {e}")
+            self.capability_manager = None
+            self.connection_manager = None
+        
     async def check_node(self, config: NodeConfig) -> Dict:
         """检查单个节点"""
         is_healthy = await self.manager.check_node_health(config, timeout=5)
@@ -164,6 +176,21 @@ class HealthMonitor:
             summary["total_nodes"] += group_summary["total"]
             summary["healthy_nodes"] += group_summary["healthy"]
             summary["unhealthy_nodes"] += group_summary["unhealthy"]
+        
+        # ===== 集成：添加能力和连接状态 =====
+        if self.capability_manager:
+            try:
+                cap_stats = self.capability_manager.get_stats()
+                summary["capabilities"] = cap_stats
+            except Exception as e:
+                summary["capabilities"] = {"error": str(e)}
+        
+        if self.connection_manager:
+            try:
+                conn_stats = self.connection_manager.get_stats()
+                summary["connections"] = conn_stats
+            except Exception as e:
+                summary["connections"] = {"error": str(e)}
         
         return summary
 
