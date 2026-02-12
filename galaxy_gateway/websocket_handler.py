@@ -272,3 +272,24 @@ async def handle_status(connection_id: str, message: Dict):
         
     except Exception as e:
         logger.error(f"❌ 处理状态查询失败: {e}")
+
+
+async def push_command_result(request_id: str, status: str, results: Dict):
+    """
+    推送命令执行结果到所有订阅的 WebSocket 连接
+    
+    Args:
+        request_id: 请求 ID
+        status: 命令状态
+        results: 执行结果
+    """
+    message = {
+        "type": "command_result",
+        "request_id": request_id,
+        "status": status,
+        "timestamp": datetime.now().isoformat() + "Z",
+        "results": results
+    }
+    
+    await connection_manager.broadcast(message)
+    logger.info(f"✅ 命令结果已推送: request_id={request_id}, status={status}")
