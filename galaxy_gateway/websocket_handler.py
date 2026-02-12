@@ -12,7 +12,7 @@ Date: 2026-01-22
 import asyncio
 import json
 import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Set
 from fastapi import WebSocket, WebSocketDisconnect
 from device_router import device_router
@@ -287,7 +287,7 @@ async def push_command_result(request_id: str, status: str, results: Dict):
         "type": "command_result",
         "request_id": request_id,
         "status": status,
-        "timestamp": datetime.now().isoformat() + "Z",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "results": results
     }
     

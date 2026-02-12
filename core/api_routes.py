@@ -22,7 +22,7 @@ import logging
 import os
 import time
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Set
 
 from fastapi import APIRouter, FastAPI, HTTPException, WebSocket, WebSocketDisconnect, Request, Depends
@@ -864,7 +864,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
     
     async def execute_command_on_target(target: str, command: str, params: Dict[str, Any], timeout: int) -> TargetResult:
         """在单个目标上执行命令"""
-        started_at = datetime.now().isoformat()
+        started_at = datetime.now(timezone.utc).isoformat()
         
         try:
             # 检查目标是否在线
@@ -874,7 +874,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                     output=None,
                     error="Target device not connected",
                     started_at=started_at,
-                    completed_at=datetime.now().isoformat()
+                    completed_at=datetime.now(timezone.utc).isoformat()
                 )
             
             # 构建命令消息
@@ -894,7 +894,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                     output=None,
                     error="Failed to send command to target",
                     started_at=started_at,
-                    completed_at=datetime.now().isoformat()
+                    completed_at=datetime.now(timezone.utc).isoformat()
                 )
             
             # 在实际实现中，这里应该等待设备响应
@@ -904,7 +904,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                 output={"message": "Command sent successfully"},
                 error=None,
                 started_at=started_at,
-                completed_at=datetime.now().isoformat()
+                completed_at=datetime.now(timezone.utc).isoformat()
             )
             
         except Exception as e:
@@ -914,7 +914,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                 output=None,
                 error=str(e),
                 started_at=started_at,
-                completed_at=datetime.now().isoformat()
+                completed_at=datetime.now(timezone.utc).isoformat()
             )
     
     @router.post("/api/v1/command")
@@ -946,7 +946,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
         """
         # 生成或使用提供的 request_id
         request_id = req.request_id or str(uuid.uuid4())
-        created_at = datetime.now().isoformat()
+        created_at = datetime.now(timezone.utc).isoformat()
         
         logger.info(f"收到统一命令: request_id={request_id}, command={req.command}, targets={req.targets}, mode={req.mode}")
         
@@ -997,13 +997,13 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                             output=None,
                             error=str(result),
                             started_at=created_at,
-                            completed_at=datetime.now().isoformat()
+                            completed_at=datetime.now(timezone.utc).isoformat()
                         )
                     else:
                         results[target] = result
                 
                 # 更新命令结果
-                completed_at = datetime.now().isoformat()
+                completed_at = datetime.now(timezone.utc).isoformat()
                 command_results[request_id]["status"] = CommandStatus.DONE
                 command_results[request_id]["completed_at"] = completed_at
                 command_results[request_id]["results"] = {
@@ -1021,7 +1021,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                 
             except asyncio.TimeoutError:
                 # 超时处理
-                completed_at = datetime.now().isoformat()
+                completed_at = datetime.now(timezone.utc).isoformat()
                 command_results[request_id]["status"] = CommandStatus.FAILED
                 command_results[request_id]["completed_at"] = completed_at
                 command_results[request_id]["results"] = {
@@ -1061,13 +1061,13 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                                 output=None,
                                 error=str(result),
                                 started_at=created_at,
-                                completed_at=datetime.now().isoformat()
+                                completed_at=datetime.now(timezone.utc).isoformat()
                             )
                         else:
                             results[target] = result
                     
                     # 更新命令结果
-                    completed_at = datetime.now().isoformat()
+                    completed_at = datetime.now(timezone.utc).isoformat()
                     command_results[request_id]["status"] = CommandStatus.DONE
                     command_results[request_id]["completed_at"] = completed_at
                     command_results[request_id]["results"] = {
@@ -1086,7 +1086,7 @@ def create_api_routes(service_manager=None, config=None) -> APIRouter:
                     
                 except Exception as e:
                     logger.error(f"异步命令执行失败: {e}")
-                    completed_at = datetime.now().isoformat()
+                    completed_at = datetime.now(timezone.utc).isoformat()
                     command_results[request_id]["status"] = CommandStatus.FAILED
                     command_results[request_id]["completed_at"] = completed_at
                     command_results[request_id]["results"] = {
